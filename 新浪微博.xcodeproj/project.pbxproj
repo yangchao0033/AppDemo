@@ -16,6 +16,7 @@
 		18EA2D891A1DC1DB0024E748 /* IWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D881A1DC1DB0024E748 /* IWHomeViewController.m */; };
 		18EA2D8C1A1DC1E80024E748 /* IWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D8B1A1DC1E80024E748 /* IWMessageViewController.m */; };
 		18EA2D8F1A1DC1F20024E748 /* IWProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D8E1A1DC1F20024E748 /* IWProfileViewController.m */; };
+		18EA2DCA1A1DCE5C0024E748 /* IWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2DC91A1DCE5C0024E748 /* IWTabBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		18EA2D8B1A1DC1E80024E748 /* IWMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWMessageViewController.m; sourceTree = "<group>"; };
 		18EA2D8D1A1DC1F20024E748 /* IWProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWProfileViewController.h; sourceTree = "<group>"; };
 		18EA2D8E1A1DC1F20024E748 /* IWProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWProfileViewController.m; sourceTree = "<group>"; };
+		18EA2DC81A1DCE5C0024E748 /* IWTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBar.h; sourceTree = "<group>"; };
+		18EA2DC91A1DCE5C0024E748 /* IWTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 		18EA2D6B1A1DC0A30024E748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18EA2DC81A1DCE5C0024E748 /* IWTabBar.h */,
+				18EA2DC91A1DCE5C0024E748 /* IWTabBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18EA2D891A1DC1DB0024E748 /* IWHomeViewController.m in Sources */,
+				18EA2DCA1A1DCE5C0024E748 /* IWTabBar.m in Sources */,
 				18EA2D721A1DC0A30024E748 /* AppDelegate.m in Sources */,
 				18EA2D8F1A1DC1F20024E748 /* IWProfileViewController.m in Sources */,
 				18EA2D8C1A1DC1E80024E748 /* IWMessageViewController.m in Sources */,

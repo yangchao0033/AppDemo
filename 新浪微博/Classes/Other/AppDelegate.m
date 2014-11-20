@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "IWTabBarController.h"
+
+#define IWScreenSize [UIScreen mainScreen].bounds
 
 @interface AppDelegate ()
 
@@ -14,9 +17,25 @@
 
 @implementation AppDelegate
 
-
+// 启动完成的时候调用
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    // 1.创建窗口
+    self.window = [[UIWindow alloc] initWithFrame:IWScreenSize];
+    
+    
+    self.window.backgroundColor = [UIColor yellowColor];
+    
+    // 3.创建tabBarController
+    IWTabBarController *tabVc = [[IWTabBarController alloc] init];
+    
+    // 设置窗口的根控制器
+    self.window.rootViewController = tabVc;
+    
+    // 3.显示窗口并且成为主窗口
+    [self.window makeKeyAndVisible];
+
+    
     return YES;
 }
 

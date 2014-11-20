@@ -1,0 +1,17 @@
+//
+//  新浪微博.pch
+//  新浪微博
+//
+//  Created by apple on 14-11-20.
+//  Copyright (c) 2014年 itcast. All rights reserved.
+//
+
+
+// 默认路径前面加了$(SRCROOT)
+#ifdef __OBJC__  // 每一个OC文件都会定义这个宏
+
+
+#define ABC 10
+
+
+#endif

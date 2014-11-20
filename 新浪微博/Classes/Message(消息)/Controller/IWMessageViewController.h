@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  IWMessageViewController.h
 //  新浪微博
 //
 //  Created by apple on 14-11-20.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface IWMessageViewController : UITableViewController
 
 @end
-

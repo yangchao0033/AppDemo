@@ -1,5 +1,5 @@
 //
-//  IWTabBar.h
+//  IWTabBarButton.h
 //  新浪微博
 //
 //  Created by apple on 14-11-20.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IWTabBar : UIView
+@interface IWTabBarButton : UIButton
 
-- (void)addTabBarButton:(UITabBarItem *)item;
+@property (nonatomic, strong) UITabBarItem *item;
 
 @end

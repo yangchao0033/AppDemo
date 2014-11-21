@@ -17,6 +17,7 @@
 		18EA2D8C1A1DC1E80024E748 /* IWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D8B1A1DC1E80024E748 /* IWMessageViewController.m */; };
 		18EA2D8F1A1DC1F20024E748 /* IWProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D8E1A1DC1F20024E748 /* IWProfileViewController.m */; };
 		18EA2DCA1A1DCE5C0024E748 /* IWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2DC91A1DCE5C0024E748 /* IWTabBar.m */; };
+		18EA2DCD1A1DE1900024E748 /* IWTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2DCC1A1DE1900024E748 /* IWTabBarButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		18EA2D8E1A1DC1F20024E748 /* IWProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWProfileViewController.m; sourceTree = "<group>"; };
 		18EA2DC81A1DCE5C0024E748 /* IWTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBar.h; sourceTree = "<group>"; };
 		18EA2DC91A1DCE5C0024E748 /* IWTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBar.m; sourceTree = "<group>"; };
+		18EA2DCB1A1DE1900024E748 /* IWTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBarButton.h; sourceTree = "<group>"; };
+		18EA2DCC1A1DE1900024E748 /* IWTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBarButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 			children = (
 				18EA2DC81A1DCE5C0024E748 /* IWTabBar.h */,
 				18EA2DC91A1DCE5C0024E748 /* IWTabBar.m */,
+				18EA2DCB1A1DE1900024E748 /* IWTabBarButton.h */,
+				18EA2DCC1A1DE1900024E748 /* IWTabBarButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				18EA2D721A1DC0A30024E748 /* AppDelegate.m in Sources */,
 				18EA2D8F1A1DC1F20024E748 /* IWProfileViewController.m in Sources */,
 				18EA2D8C1A1DC1E80024E748 /* IWMessageViewController.m in Sources */,
+				18EA2DCD1A1DE1900024E748 /* IWTabBarButton.m in Sources */,
 				18EA2D731A1DC0A30024E748 /* main.m in Sources */,
 				18EA2D711A1DC0A30024E748 /* IWTabBarController.m in Sources */,
 				18EA2D861A1DC1CF0024E748 /* IWDiscoverViewController.m in Sources */,

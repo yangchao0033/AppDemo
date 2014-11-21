@@ -19,6 +19,8 @@
 
 @interface IWTabBarController ()
 
+@property (nonatomic, weak) IWTabBar *cusTomTabBar;
+
 @end
 
 @implementation IWTabBarController
@@ -39,36 +41,35 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // 自定义tabBar
+    IWTabBar *tabBar = [[IWTabBar alloc] initWithFrame:self.tabBar.frame];
+    tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbar_background"]];
+    _cusTomTabBar = tabBar;
+    [self.view addSubview:tabBar];
+    
+    // 把系统自带的干掉
+    [self.tabBar removeFromSuperview];
+
+    
     // 添加所有子控制器
     [self setUpAllChildViewController];
-    IWTabBar *tabBar = [[IWTabBar alloc] initWithFrame:self.tabBar.frame];
-//    void text();
-//    
-//    // 定义函数指针
-//    void (*p)();
-//    p = text;
-//    p();
+    
+    
+//    int a = 10;
+//    double b = (double)a;
+//    [self setValue:tabBar forKey:@"tabBar"];
 
-    [self setValue:tabBar forKey:@"tabBar"];
+//    ((void(*)(id,SEL,id))objc_msgSend)(self,@selector(setTabBar:),tabBar);
+//      (void(*)(id,SEL,id))objc_msgSend(self,@selector(setTabBar:),tabBar);
 
-//      (void(objc_msgSend)(id,SEL,id))(self,@selector(setTabBar:),tabBar);
-//    self.tabBar = tabBar;
 }
 
-void text()
-{
-    NSLog(@"ppppp");
-}
-//- (void)
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
     // 没有调用系统默认的做法
     [super viewWillAppear:animated];
-    
-    
-    NSLog(@"%@",self.tabBar.subviews);
-    
     
 }
 
@@ -100,9 +101,13 @@ void text()
     vc.tabBarItem.title = title;
     vc.tabBarItem.image = image;
    
+    vc.tabBarItem.badgeValue = @"10";
     selImage = [selImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = selImage;
     [self addChildViewController:vc];
+    
+    [_cusTomTabBar addTabBarButton:vc.tabBarItem];
+    
 }
 
 

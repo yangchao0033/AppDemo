@@ -7,20 +7,29 @@
 //
 
 #import "IWTabBar.h"
-
+#import "IWTabBarButton.h"
 @interface IWTabBar ()
 
 @property (nonatomic, weak) UIButton *addButton;
+@property (nonatomic, strong) NSMutableArray *tabBarButtons;
 
 @end
 
 @implementation IWTabBar
 
+- (NSMutableArray *)tabBarButtons
+{
+    if (_tabBarButtons == nil) {
+        _tabBarButtons = [NSMutableArray array];
+    }
+    return _tabBarButtons;
+}
+
 - (UIButton *)addButton
 {
     if (_addButton == nil) {
         UIButton *add  =[UIButton buttonWithType:UIButtonTypeCustom];
-        
+    
         [add setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_button"] forState:UIControlStateNormal];
         [add setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_button_highlighted"] forState:UIControlStateHighlighted];
         
@@ -34,6 +43,18 @@
     }
     return _addButton;
 }
+
+// 添加TabBarButton
+- (void)addTabBarButton:(UITabBarItem *)item
+{
+    IWTabBarButton *button = [IWTabBarButton buttonWithType:UIButtonTypeCustom];
+    button.item = item;
+    
+    [self addSubview:button];
+    
+    [self.tabBarButtons addObject:button];
+}
+
 
 // 调整内部子控件的位置
 - (void)layoutSubviews
@@ -51,22 +72,21 @@
 #pragma mark - 设置所有tabBarButton的frame
 - (void)setUpAllTabBarButtonFrame
 {
-    int count = self.items.count + 1;
+    int count = self.tabBarButtons.count + 1;
     CGFloat w = self.bounds.size.width / count;
     CGFloat h = self.bounds.size.height;
     CGFloat x = 0;
     CGFloat y = 0;
     int i = 0;
-    for (UIView *tabBarButton in self.subviews) {
-        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) { // tabbarButton
+    for (UIView *tabBarButton in self.tabBarButtons) {
+        
             if (i == 2) {
                 i = 3;
             }
-            
             x = i * w;
             tabBarButton.frame = CGRectMake(x, y, w, h);
             i++;
-        }
+            
     }
 }
 

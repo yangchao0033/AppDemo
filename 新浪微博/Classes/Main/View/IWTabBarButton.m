@@ -34,16 +34,17 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
     CGFloat imageX = 0;
     CGFloat imageY = 0;
-    CGFloat imageH = self.bounds.size.height * IWImageRadio;
-    CGFloat imageW = self.bounds.size.width;
+    CGFloat imageH = self.height * IWImageRadio;
+    CGFloat imageW = self.width;
     self.imageView.frame = CGRectMake(imageX, imageY, imageW, imageH);
     
     CGFloat titleY = imageH;
     CGFloat titleX = 0;
     CGFloat titleW = imageW;
-    CGFloat titleH = self.bounds.size.height - imageH;
+    CGFloat titleH = self.height - imageH;
     self.titleLabel.frame = CGRectMake(titleX, titleY, titleW, titleH);
 }
 

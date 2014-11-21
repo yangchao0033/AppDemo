@@ -36,6 +36,9 @@
         [add setImage:[UIImage imageNamed:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
         [add setImage:[UIImage imageNamed:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
         
+        // 自动算出控件最合适的尺寸
+        [add sizeToFit];
+        
         [self addSubview:add];
         
         _addButton = add;
@@ -72,8 +75,9 @@
 #pragma mark - 设置所有tabBarButton的frame
 - (void)setUpAllTabBarButtonFrame
 {
+    
     int count = self.tabBarButtons.count + 1;
-    CGFloat w = self.bounds.size.width / count;
+    CGFloat w = self.width / count;
     CGFloat h = self.bounds.size.height;
     CGFloat x = 0;
     CGFloat y = 0;
@@ -90,12 +94,11 @@
     }
 }
 
+
+
 #pragma mark - 设置加号按钮的frame
 - (void)setUpAddButtonFrame
 {
-    CGSize btnSize = self.addButton.currentBackgroundImage.size;
-    self.addButton.bounds = CGRectMake(0, 0, btnSize.width, btnSize.height);
-    
-    self.addButton.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5);
+    self.addButton.center = CGPointMake(self.width * 0.5, self.height * 0.5);
 }
 @end

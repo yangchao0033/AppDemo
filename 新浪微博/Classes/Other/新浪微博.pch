@@ -11,7 +11,7 @@
 #ifdef __OBJC__  // 每一个OC文件都会定义这个宏
 
 
-#define ABC 10
+#import "UIView+Frame.h"
 
 
 #endif

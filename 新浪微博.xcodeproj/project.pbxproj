@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		188847341A1ECE0B00F553E6 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 188847331A1ECE0B00F553E6 /* UIView+Frame.m */; };
 		18EA2D481A1D96FE0024E748 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18EA2D471A1D96FE0024E748 /* Images.xcassets */; };
 		18EA2D571A1D96FE0024E748 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D561A1D96FE0024E748 /* ____Tests.m */; };
 		18EA2D711A1DC0A30024E748 /* IWTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D691A1DC0A30024E748 /* IWTabBarController.m */; };
@@ -31,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		188847301A1ECABC00F553E6 /* 笔记.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "笔记.h"; sourceTree = "<group>"; };
+		188847321A1ECE0B00F553E6 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		188847331A1ECE0B00F553E6 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		18EA2D371A1D96FD0024E748 /* 新浪微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "新浪微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EA2D3B1A1D96FD0024E748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18EA2D471A1D96FE0024E748 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -75,9 +79,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		188847311A1ECDEB00F553E6 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				188847321A1ECE0B00F553E6 /* UIView+Frame.h */,
+				188847331A1ECE0B00F553E6 /* UIView+Frame.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		18EA2D2E1A1D96FD0024E748 = {
 			isa = PBXGroup;
 			children = (
+				188847301A1ECABC00F553E6 /* 笔记.h */,
 				18EA2D391A1D96FD0024E748 /* 新浪微博 */,
 				18EA2D531A1D96FE0024E748 /* 新浪微博Tests */,
 				18EA2D381A1D96FD0024E748 /* Products */,
@@ -181,6 +195,7 @@
 		18EA2D6C1A1DC0A30024E748 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				188847311A1ECDEB00F553E6 /* Category */,
 				18EA2D6D1A1DC0A30024E748 /* AppDelegate.h */,
 				18EA2D6E1A1DC0A30024E748 /* AppDelegate.m */,
 				18EA2D6F1A1DC0A30024E748 /* main.m */,
@@ -428,6 +443,7 @@
 				18EA2DCD1A1DE1900024E748 /* IWTabBarButton.m in Sources */,
 				18EA2D731A1DC0A30024E748 /* main.m in Sources */,
 				18EA2D711A1DC0A30024E748 /* IWTabBarController.m in Sources */,
+				188847341A1ECE0B00F553E6 /* UIView+Frame.m in Sources */,
 				18EA2D861A1DC1CF0024E748 /* IWDiscoverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

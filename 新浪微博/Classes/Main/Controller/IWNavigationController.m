@@ -7,6 +7,8 @@
 //
 
 #import "IWNavigationController.h"
+#import "IWTabBarController.h"
+#import "IWTabBar.h"
 
 @implementation IWNavigationController
 
@@ -24,23 +26,34 @@
 
 }
 
-#warning TODO:导航功能未解决
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // 只要覆盖了导航条系统自带的左边按钮,这个代理就会做些事情
+    // 实现滑动返回功能
+    self.interactivePopGestureRecognizer.delegate = nil;
+}
+
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    
-    // 设置One控制器的导航条
-    // 设置左边的按钮
-    UIBarButtonItem *popPre = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"navigationbar_back"] highImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] target:self action:@selector(popPre)];
-    
-    // 设置导航条的按钮
-    viewController.navigationItem.leftBarButtonItem = popPre;
-    
-    // 设置右边的按钮
-    UIBarButtonItem *popRoot = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"navigationbar_more"] highImage:[UIImage imageNamed:@"navigationbar_more_highlighted"] target:self action:@selector(popRoot)];
-    
-    // 设置导航条的按钮
-    viewController.navigationItem.rightBarButtonItem = popRoot;
+    // self - 导航控制器
+    if (self.viewControllers.count) { // 不是根控制器
+        
+        // 设置One控制器的导航条
+        // 设置左边的按钮
+        UIBarButtonItem *popPre = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"navigationbar_back"] highImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] target:self action:@selector(popPre)];
+        
+        // 设置导航条的左边按钮
+        viewController.navigationItem.leftBarButtonItem = popPre;
+        
+        // 设置右边的按钮
+        UIBarButtonItem *popRoot = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"navigationbar_more"] highImage:[UIImage imageNamed:@"navigationbar_more_highlighted"] target:self action:@selector(popRoot)];
+        
+        // 设置导航条的按钮
+        viewController.navigationItem.rightBarButtonItem = popRoot;
+        
+    }
 
     
     // 调用系统默认做法,因为只有系统才知道怎么做push
@@ -57,6 +70,27 @@
 {
     // 回到根控制器控制器
     [self popToRootViewControllerAnimated:YES];
+}
+
+- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
+{
+    IWTabBarController *tabVc =  (IWTabBarController *)IWKeywindow.rootViewController;
+    
+    // 调用系统的方法popRoot
+   NSArray *arr =  [super popToRootViewControllerAnimated:animated];
+    
+    
+    // 删除self.tabBar中的子控件除了自定义tabBar
+    for (UIView *childView in tabVc.tabBar.subviews) {
+        if (![childView isKindOfClass:[IWTabBar class]]) { // 不是自己的tabBar
+            
+            [childView removeFromSuperview];
+        }
+        
+    }
+
+    
+    return arr;
 }
 
 @end

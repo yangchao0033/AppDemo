@@ -42,23 +42,16 @@
     _cusTomTabBar = tabBar;
     // 加到系统自带的tabBar上面,就会自动隐藏功能
     [self.tabBar addSubview:tabBar];
-    
-//    // 把系统自带的干掉
-//    [self.tabBar removeFromSuperview];
 
-    
-    
     // 添加所有子控制器
     [self setUpAllChildViewController];
     
-    
-
 }
 
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // 没有调用系统默认的做法,添加UITabBarButton
+    // 调用系统默认的做法:添加UITabBarButton
     [super viewWillAppear:animated];
 
     // 删除self.tabBar中的子控件除了自定义tabBar

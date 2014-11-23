@@ -15,7 +15,9 @@
 
 #import "IWTabBar.h"
 
-#import <objc/message.h>
+#import "IWNavigationController.h"
+
+
 
 @interface IWTabBarController ()
 
@@ -25,51 +27,49 @@
 
 @implementation IWTabBarController
 
-// 第一次使用这个类或者他的子类的时候调用
-+ (void)initialize
-{
-    // 它只是所有item的标志
-    UITabBarItem *item = [UITabBarItem appearance];
-    
-    NSMutableDictionary *textAtt = [NSMutableDictionary dictionary];
-    textAtt[NSForegroundColorAttributeName] = [UIColor orangeColor];
-    [item setTitleTextAttributes:textAtt forState:UIControlStateSelected];
-
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     // 自定义tabBar
-    IWTabBar *tabBar = [[IWTabBar alloc] initWithFrame:self.tabBar.frame];
+    IWTabBar *tabBar = [[IWTabBar alloc] initWithFrame:self.tabBar.bounds];
+    __weak typeof(self) weakSelf = self;
+    tabBar.tabBarblock = ^(NSInteger selectedIndex){
+        weakSelf.selectedIndex = selectedIndex;
+    };
     tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbar_background"]];
     _cusTomTabBar = tabBar;
-    [self.view addSubview:tabBar];
+    // 加到系统自带的tabBar上面,就会自动隐藏功能
+    [self.tabBar addSubview:tabBar];
     
-    // 把系统自带的干掉
-    [self.tabBar removeFromSuperview];
+//    // 把系统自带的干掉
+//    [self.tabBar removeFromSuperview];
 
+    
     
     // 添加所有子控制器
     [self setUpAllChildViewController];
     
     
-//    int a = 10;
-//    double b = (double)a;
-//    [self setValue:tabBar forKey:@"tabBar"];
-
-//    ((void(*)(id,SEL,id))objc_msgSend)(self,@selector(setTabBar:),tabBar);
-//      (void(*)(id,SEL,id))objc_msgSend(self,@selector(setTabBar:),tabBar);
 
 }
 
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
-    // 没有调用系统默认的做法
+    // 没有调用系统默认的做法,添加UITabBarButton
     [super viewWillAppear:animated];
+
+    // 删除self.tabBar中的子控件除了自定义tabBar
+    for (UIView *childView in self.tabBar.subviews) {
+        if (![childView isKindOfClass:[IWTabBar class]]) { // 不是自己的tabBar
+            
+            [childView removeFromSuperview];
+        }
+        
+    }
+    
     
 }
 
@@ -82,6 +82,7 @@
     
     // 消息
     IWMessageViewController *message = [[IWMessageViewController alloc] init];
+    message.view.backgroundColor = [UIColor redColor];
     [self setUpOneChildViewController:message title:@"消息" image:[UIImage imageNamed:@"tabbar_message_center"] selImage:[UIImage imageNamed:@"tabbar_message_center_selected"]];
     
     // 广场
@@ -98,16 +99,21 @@
 #pragma mark -设置一个子控制器
 - (void)setUpOneChildViewController:(UIViewController *)vc title:(NSString *)title image:(UIImage *)image selImage:(UIImage *)selImage
 {
-    vc.tabBarItem.title = title;
+    // vc.title =  vc.tabBarItem.title and     vc.navigationItem.title
+    vc.title = title;
+
     vc.tabBarItem.image = image;
    
-    vc.tabBarItem.badgeValue = @"10";
     selImage = [selImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = selImage;
-    [self addChildViewController:vc];
+    // 使用自己的导航控制器包装
+    UINavigationController *nav = [[IWNavigationController alloc] initWithRootViewController:vc];
+    
+
+    [self addChildViewController:nav];
     
     [_cusTomTabBar addTabBarButton:vc.tabBarItem];
-    
+
 }
 
 

@@ -17,11 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // 设置发送聊天按钮
+    UIBarButtonItem *chat = [[UIBarButtonItem alloc] initWithTitle:@"发起聊天" style:UIBarButtonItemStyleBordered target:nil action:nil];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 创建描述文本的字典(颜色,字体)
+//    NSMutableDictionary *textDict = [NSMutableDictionary dictionary];
+//    textDict[NSForegroundColorAttributeName] = [UIColor orangeColor];
+//    [chat setTitleTextAttributes:textDict forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = chat;
+    
 }
 
 - (void)didReceiveMemoryWarning {

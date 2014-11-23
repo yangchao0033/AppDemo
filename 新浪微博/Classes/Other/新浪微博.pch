@@ -10,8 +10,16 @@
 // 默认路径前面加了$(SRCROOT)
 #ifdef __OBJC__  // 每一个OC文件都会定义这个宏
 
-
+#import "UIImage+image.h"
 #import "UIView+Frame.h"
+#import "UIBarButtonItem+Create.h"
 
+#define IWKeywindow [UIApplication sharedApplication].keyWindow
+
+#ifdef DEBUG /// 调试阶段
+#define IWLog(...) NSLog(__VA_ARGS__)
+#else // 发布阶段
+#define IWLog(...)
+#endif
 
 #endif

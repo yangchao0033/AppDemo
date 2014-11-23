@@ -11,6 +11,7 @@
 @interface IWTabBar ()
 
 @property (nonatomic, weak) UIButton *addButton;
+@property (nonatomic, weak) UIButton *selectedButton;
 @property (nonatomic, strong) NSMutableArray *tabBarButtons;
 
 @end
@@ -53,9 +54,32 @@
     IWTabBarButton *button = [IWTabBarButton buttonWithType:UIButtonTypeCustom];
     button.item = item;
     
+    button.tag = self.subviews.count;
+    
+    // 监听按钮
+    [button addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
+    
+    if (button.tag == 0) { // 默认选中第一个按钮
+        [self btnClick:button];
+    }
+    
+    
     [self addSubview:button];
     
     [self.tabBarButtons addObject:button];
+}
+
+
+- (void)btnClick:(UIButton *)button
+{
+    _selectedButton.selected = NO;
+    button.selected = YES;
+    _selectedButton = button;
+    
+    // 让block做事情
+    if (_tabBarblock) {
+        _tabBarblock(button.tag);
+    }
 }
 
 
@@ -72,6 +96,7 @@
 
     
 }
+
 #pragma mark - 设置所有tabBarButton的frame
 - (void)setUpAllTabBarButtonFrame
 {

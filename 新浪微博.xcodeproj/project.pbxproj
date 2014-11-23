@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182CEA9B1A1F125800547122 /* UIBarButtonItem+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CEA9A1A1F125800547122 /* UIBarButtonItem+Create.m */; };
+		182CEA9E1A1F13AD00547122 /* IWTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CEA9D1A1F13AD00547122 /* IWTitleButton.m */; };
+		182CEAA11A1F15A800547122 /* UIImage+image.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CEAA01A1F15A800547122 /* UIImage+image.m */; };
+		185486B91A1F2D750042D212 /* IWCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 185486B81A1F2D750042D212 /* IWCover.m */; };
+		187298F71A21814F0030F3CD /* IWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187298F61A21814F0030F3CD /* IWNavigationController.m */; };
+		187298FA1A218BA90030F3CD /* IWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 187298F91A218BA90030F3CD /* IWSearchBar.m */; };
+		187298FD1A218CC90030F3CD /* IWOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187298FC1A218CC90030F3CD /* IWOneViewController.m */; };
+		187298FF1A218CE70030F3CD /* IWOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187298FE1A218CE70030F3CD /* IWOneViewController.xib */; };
+		187299021A21904E0030F3CD /* IWTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187299011A21904E0030F3CD /* IWTwoViewController.m */; };
 		188847341A1ECE0B00F553E6 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 188847331A1ECE0B00F553E6 /* UIView+Frame.m */; };
+		188847371A1EDEC000F553E6 /* IWBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188847361A1EDEC000F553E6 /* IWBadgeView.m */; };
+		18911D261A1F243E0054ADD0 /* IWPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18911D251A1F243E0054ADD0 /* IWPopView.m */; };
+		18911D291A1F26560054ADD0 /* IWPopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18911D281A1F26560054ADD0 /* IWPopViewController.m */; };
 		18EA2D481A1D96FE0024E748 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18EA2D471A1D96FE0024E748 /* Images.xcassets */; };
 		18EA2D571A1D96FE0024E748 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D561A1D96FE0024E748 /* ____Tests.m */; };
 		18EA2D711A1DC0A30024E748 /* IWTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2D691A1DC0A30024E748 /* IWTabBarController.m */; };
@@ -32,9 +44,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182CEA991A1F125800547122 /* UIBarButtonItem+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Create.h"; sourceTree = "<group>"; };
+		182CEA9A1A1F125800547122 /* UIBarButtonItem+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Create.m"; sourceTree = "<group>"; };
+		182CEA9C1A1F13AD00547122 /* IWTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTitleButton.h; sourceTree = "<group>"; };
+		182CEA9D1A1F13AD00547122 /* IWTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTitleButton.m; sourceTree = "<group>"; };
+		182CEA9F1A1F15A800547122 /* UIImage+image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+image.h"; sourceTree = "<group>"; };
+		182CEAA01A1F15A800547122 /* UIImage+image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image.m"; sourceTree = "<group>"; };
+		185486B71A1F2D750042D212 /* IWCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWCover.h; sourceTree = "<group>"; };
+		185486B81A1F2D750042D212 /* IWCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWCover.m; sourceTree = "<group>"; };
+		187298F51A21814F0030F3CD /* IWNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWNavigationController.h; sourceTree = "<group>"; };
+		187298F61A21814F0030F3CD /* IWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWNavigationController.m; sourceTree = "<group>"; };
+		187298F81A218BA90030F3CD /* IWSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchBar.h; sourceTree = "<group>"; };
+		187298F91A218BA90030F3CD /* IWSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchBar.m; sourceTree = "<group>"; };
+		187298FB1A218CC90030F3CD /* IWOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWOneViewController.h; sourceTree = "<group>"; };
+		187298FC1A218CC90030F3CD /* IWOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWOneViewController.m; sourceTree = "<group>"; };
+		187298FE1A218CE70030F3CD /* IWOneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IWOneViewController.xib; sourceTree = "<group>"; };
+		187299001A21904E0030F3CD /* IWTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTwoViewController.h; sourceTree = "<group>"; };
+		187299011A21904E0030F3CD /* IWTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTwoViewController.m; sourceTree = "<group>"; };
 		188847301A1ECABC00F553E6 /* 笔记.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "笔记.h"; sourceTree = "<group>"; };
 		188847321A1ECE0B00F553E6 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		188847331A1ECE0B00F553E6 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		188847351A1EDEC000F553E6 /* IWBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWBadgeView.h; sourceTree = "<group>"; };
+		188847361A1EDEC000F553E6 /* IWBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWBadgeView.m; sourceTree = "<group>"; };
+		18911D241A1F243E0054ADD0 /* IWPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPopView.h; sourceTree = "<group>"; };
+		18911D251A1F243E0054ADD0 /* IWPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWPopView.m; sourceTree = "<group>"; };
+		18911D271A1F26560054ADD0 /* IWPopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPopViewController.h; sourceTree = "<group>"; };
+		18911D281A1F26560054ADD0 /* IWPopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWPopViewController.m; sourceTree = "<group>"; };
 		18EA2D371A1D96FD0024E748 /* 新浪微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "新浪微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EA2D3B1A1D96FD0024E748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18EA2D471A1D96FE0024E748 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -84,6 +119,10 @@
 			children = (
 				188847321A1ECE0B00F553E6 /* UIView+Frame.h */,
 				188847331A1ECE0B00F553E6 /* UIView+Frame.m */,
+				182CEA991A1F125800547122 /* UIBarButtonItem+Create.h */,
+				182CEA9A1A1F125800547122 /* UIBarButtonItem+Create.m */,
+				182CEA9F1A1F15A800547122 /* UIImage+image.h */,
+				182CEAA01A1F15A800547122 /* UIImage+image.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -170,6 +209,8 @@
 			children = (
 				18EA2D681A1DC0A30024E748 /* IWTabBarController.h */,
 				18EA2D691A1DC0A30024E748 /* IWTabBarController.m */,
+				187298F51A21814F0030F3CD /* IWNavigationController.h */,
+				187298F61A21814F0030F3CD /* IWNavigationController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -188,6 +229,8 @@
 				18EA2DC91A1DCE5C0024E748 /* IWTabBar.m */,
 				18EA2DCB1A1DE1900024E748 /* IWTabBarButton.h */,
 				18EA2DCC1A1DE1900024E748 /* IWTabBarButton.m */,
+				188847351A1EDEC000F553E6 /* IWBadgeView.h */,
+				188847361A1EDEC000F553E6 /* IWBadgeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -233,6 +276,8 @@
 		18EA2D771A1DC19D0024E748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				187298F81A218BA90030F3CD /* IWSearchBar.h */,
+				187298F91A218BA90030F3CD /* IWSearchBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -252,6 +297,13 @@
 			children = (
 				18EA2D871A1DC1DB0024E748 /* IWHomeViewController.h */,
 				18EA2D881A1DC1DB0024E748 /* IWHomeViewController.m */,
+				18911D271A1F26560054ADD0 /* IWPopViewController.h */,
+				18911D281A1F26560054ADD0 /* IWPopViewController.m */,
+				187298FB1A218CC90030F3CD /* IWOneViewController.h */,
+				187298FC1A218CC90030F3CD /* IWOneViewController.m */,
+				187298FE1A218CE70030F3CD /* IWOneViewController.xib */,
+				187299001A21904E0030F3CD /* IWTwoViewController.h */,
+				187299011A21904E0030F3CD /* IWTwoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -266,6 +318,12 @@
 		18EA2D7B1A1DC19D0024E748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				182CEA9C1A1F13AD00547122 /* IWTitleButton.h */,
+				182CEA9D1A1F13AD00547122 /* IWTitleButton.m */,
+				18911D241A1F243E0054ADD0 /* IWPopView.h */,
+				18911D251A1F243E0054ADD0 /* IWPopView.m */,
+				185486B71A1F2D750042D212 /* IWCover.h */,
+				185486B81A1F2D750042D212 /* IWCover.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -418,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18EA2D481A1D96FE0024E748 /* Images.xcassets in Resources */,
+				187298FF1A218CE70030F3CD /* IWOneViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,16 +494,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187298FA1A218BA90030F3CD /* IWSearchBar.m in Sources */,
+				187298FD1A218CC90030F3CD /* IWOneViewController.m in Sources */,
+				182CEA9E1A1F13AD00547122 /* IWTitleButton.m in Sources */,
+				185486B91A1F2D750042D212 /* IWCover.m in Sources */,
+				187299021A21904E0030F3CD /* IWTwoViewController.m in Sources */,
+				182CEAA11A1F15A800547122 /* UIImage+image.m in Sources */,
 				18EA2D891A1DC1DB0024E748 /* IWHomeViewController.m in Sources */,
 				18EA2DCA1A1DCE5C0024E748 /* IWTabBar.m in Sources */,
 				18EA2D721A1DC0A30024E748 /* AppDelegate.m in Sources */,
 				18EA2D8F1A1DC1F20024E748 /* IWProfileViewController.m in Sources */,
+				187298F71A21814F0030F3CD /* IWNavigationController.m in Sources */,
 				18EA2D8C1A1DC1E80024E748 /* IWMessageViewController.m in Sources */,
 				18EA2DCD1A1DE1900024E748 /* IWTabBarButton.m in Sources */,
 				18EA2D731A1DC0A30024E748 /* main.m in Sources */,
 				18EA2D711A1DC0A30024E748 /* IWTabBarController.m in Sources */,
+				182CEA9B1A1F125800547122 /* UIBarButtonItem+Create.m in Sources */,
+				188847371A1EDEC000F553E6 /* IWBadgeView.m in Sources */,
 				188847341A1ECE0B00F553E6 /* UIView+Frame.m in Sources */,
 				18EA2D861A1DC1CF0024E748 /* IWDiscoverViewController.m in Sources */,
+				18911D291A1F26560054ADD0 /* IWPopViewController.m in Sources */,
+				18911D261A1F243E0054ADD0 /* IWPopView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

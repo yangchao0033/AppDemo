@@ -24,7 +24,7 @@
     self.window = [[UIWindow alloc] initWithFrame:IWScreenSize];
     
     
-    self.window.backgroundColor = [UIColor yellowColor];
+//    self.window.backgroundColor = [UIColor yellowColor];
     
     // 3.创建tabBarController
     IWTabBarController *tabVc = [[IWTabBarController alloc] init];

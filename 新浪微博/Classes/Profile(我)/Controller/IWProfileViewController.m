@@ -17,11 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // 设置发送聊天按钮
+    UIBarButtonItem *settting = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(setting)];
+    self.navigationItem.rightBarButtonItem = settting;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+}
+- (void)setting
+{
+    IWLog(@"%s",__func__);
 }
 
 - (void)didReceiveMemoryWarning {

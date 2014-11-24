@@ -21,6 +21,7 @@
     // 创建文本的属性字典
     NSMutableDictionary *textDict = [NSMutableDictionary dictionary];
     textDict[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    
     // 给模型设置富文本属性(可以设置字符串的一些颜色,字体大小)
     [barItem setTitleTextAttributes:textDict forState:UIControlStateNormal];
 

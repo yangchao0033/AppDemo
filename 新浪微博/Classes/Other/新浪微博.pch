@@ -15,7 +15,7 @@
 #import "UIBarButtonItem+Create.h"
 
 #define IWKeywindow [UIApplication sharedApplication].keyWindow
-
+#define IWScreenSizes [UIScreen mainScreen].bounds
 #ifdef DEBUG /// 调试阶段
 #define IWLog(...) NSLog(__VA_ARGS__)
 #else // 发布阶段

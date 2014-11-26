@@ -7,13 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "IWTabBarController.h"
-#import "IWNewFeatureViewController.h"
-
-#define IWUserDefaults [NSUserDefaults standardUserDefaults]
-#define IWVersionKey @"version"
-
-#define IWScreenSize [UIScreen mainScreen].bounds
+#import "IWOAuthViewController.h"
+#import "IWMainTool.h"
+#import "IWAccount.h"
+#import "IWAccountTool.h"
 
 @interface AppDelegate ()
 
@@ -25,45 +22,30 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // 1.创建窗口
-    self.window = [[UIWindow alloc] initWithFrame:IWScreenSize];
+    self.window = [[UIWindow alloc] initWithFrame:IWScreenSizes];
+
+//    self.window != [UIApplication sharedApplication].keyWindow
     
+    // 2.获取accessToken
+    IWAccount *account = [IWAccountTool account];
+    if (account.access_token) { // 有
+        // 判断有没有新特性,从而选择窗口的根控制器
+    [IWMainTool chooseRootViewController:self.window];
+    }else{ // 木有
     
-    // 2.判断是否有新特性,用户的软件有新版本的时候
-    // 获取Info.plist
-    NSDictionary *infoDict = [NSBundle mainBundle].infoDictionary;
-    // 获取当前用户的软件版本
-    NSString *currentVersion = infoDict[@"CFBundleVersion"];
-    // 获取上一次最新的版本
-    NSString *lastVersion = [IWUserDefaults objectForKey:IWVersionKey];
+        // 进入授权
+        IWOAuthViewController *oauth = [[IWOAuthViewController alloc] init];
+        self.window.rootViewController = oauth;
     
-    if (![currentVersion isEqualToString:lastVersion]) { // 1.0 , 1.1 不相等,意味有新版本
-        // 进入新特性界面
-        IWNewFeatureViewController *newFeatureVc = [[IWNewFeatureViewController alloc] init];
-        self.window.rootViewController = newFeatureVc;
-        
-        // 存储最新版本号
-        [IWUserDefaults setObject:currentVersion forKey:IWVersionKey];
-        // 同步
-        [IWUserDefaults synchronize];
-        
-    }else{
-        // 进入主要界面
-        // 3.创建tabBarController
-        IWTabBarController *tabVc = [[IWTabBarController alloc] init];
-        
-        // 设置窗口的根控制器
-        self.window.rootViewController = tabVc;
     }
-    
-    
-  
-    
+
     // 3.显示窗口并且成为主窗口
     [self.window makeKeyAndVisible];
 
     
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

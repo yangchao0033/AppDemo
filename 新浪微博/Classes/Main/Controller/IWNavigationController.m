@@ -10,6 +10,12 @@
 #import "IWTabBarController.h"
 #import "IWTabBar.h"
 
+@interface IWNavigationController()<UINavigationControllerDelegate>
+
+@property (nonatomic, strong) id popDelegate;
+
+@end
+
 @implementation IWNavigationController
 
 // 第一次使用本类或者子类的时候调用
@@ -30,9 +36,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
+    _popDelegate = self.interactivePopGestureRecognizer.delegate;
+    
+    self.delegate = self;
+}
+
+// 将要显示viewController这个控制器的时候调用
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
     // 只要覆盖了导航条系统自带的左边按钮,这个代理就会做些事情
     // 实现滑动返回功能
-    self.interactivePopGestureRecognizer.delegate = nil;
+    // 直接删除,系统的某些相当于不会调用
+    if (viewController == self.viewControllers[0]) { // 是根控制器
+        self.interactivePopGestureRecognizer.delegate = _popDelegate;
+    }else{
+        self.interactivePopGestureRecognizer.delegate = nil;
+    }
 }
 
 

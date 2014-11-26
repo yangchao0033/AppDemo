@@ -80,6 +80,7 @@
 
 - (void)setIndexPath:(NSIndexPath *)indexPath itemCount:(NSInteger)count
 {
+    // indexPath.item =  indexPath.row
     if (indexPath.item == count - 1) { // 就是最后一个cell
         self.shareButton.hidden = NO;
         self.startButton.hidden = NO;

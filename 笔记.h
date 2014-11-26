@@ -7,9 +7,22 @@
 //
 
 /*
-    UITabBar上的按钮由谁决定:由tabBarController控制器对应的子控制器的tabBarItem(模型),MVC思想,改变模型就能改变视图
+一.UITabBar上的按钮由谁决定:由tabBarController控制器对应的子控制器的tabBarItem(模型),MVC思想,改变模型就能改变视图
  
- OAuth授权笔记:
+ 
+二.怎么看是不是系统自带的模型:
+ 1.看名称带有Item就是模型
+ 2.还可以跳入头文件,只要继承NSObject
+ 3.系统自带的item,要想设置对应控件的标题颜色,只能设置item的富文本属性(丰富文本)
+ 
+ 使用UICollectionViewController的条件
+ 注意:self.view != self.collectionView
+ 
+ 1.必须要有布局参数,默认使用流水布局
+ 2.cell必须注册,不能alloc init创建,其实默认storyboard内部实现就是注册机制
+ 3.默认系统自带的cell不好用,必须自定义cell
+ 
+三. OAuth授权笔记:
  
  OAuth优点:保证用户信息安全
  
@@ -47,5 +60,19 @@ OAuth条件:不是任何软件都能OAuth授权
  
  错误
  invalid_request 非法的请求,url错误,url不完整
+ 
+ 
+ 
+ 处理网络请求:
+ 1.明确请求方式:post,get,
+ 2.明确用什么去请求:AFN->做网络的请求
+ 3.发送请求(1.创建管理者2.拼接参数3.发送请求)
+ 4.解析返回数据(查看API)
+ 5.字典转模型(根据返回的数据,设计模型),只需要搞有用的数据
+ 
+ 
+ 把模型数据展示到界面
+ 
+ SDWebImage框架:
  
  */

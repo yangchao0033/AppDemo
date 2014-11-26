@@ -37,7 +37,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    NSLog(@"%@",self.imageView.image);
+
     if (_curImage) {
         
         self.titleLabel.x = self.imageView.x;

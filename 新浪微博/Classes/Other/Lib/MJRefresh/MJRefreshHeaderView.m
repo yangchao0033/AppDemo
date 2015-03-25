@@ -29,7 +29,7 @@
         UILabel *lastUpdateTimeLabel = [[UILabel alloc] init];
         lastUpdateTimeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         lastUpdateTimeLabel.font = [UIFont boldSystemFontOfSize:12];
-        lastUpdateTimeLabel.textColor = MJRefreshLabelTextColor;
+//        lastUpdateTimeLabel.textColor = MJRefreshLabelTextColor;
         lastUpdateTimeLabel.backgroundColor = [UIColor clearColor];
         lastUpdateTimeLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_lastUpdateTimeLabel = lastUpdateTimeLabel];

@@ -18,6 +18,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
+    
     if (self = [super initWithFrame:frame]) {
         
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

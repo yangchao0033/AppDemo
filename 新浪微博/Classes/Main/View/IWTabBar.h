@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^IWTabBarBlock)(NSInteger selectedIndex);
+
 // void(^)(NSInteger selectedIndex) block类型
 //@class IWTabBar;
 //@protocol IWTabBarDelegate <NSObject>
 //
 //@optional
 //- (void)tabBar:(IWTabBar *)tabBar didClickButton:(NSInteger)selectedIndex;
+//- (void)tabBarDidClickAddButton:(IWTabBar *)tabBar;
 //
 //@end
 

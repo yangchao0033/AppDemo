@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 /*
  created_at	string	微博创建时间
  idstr	string	字符串型的微博ID
@@ -22,8 +23,10 @@
  */
 
 @class IWUser,IWPhoto;
-@interface IWStatus : NSObject
-
+@interface IWStatus : NSObject<NSCoding>
+//{
+//    NSString *_source;
+//}
 /**
  *  微博创建时间
  */

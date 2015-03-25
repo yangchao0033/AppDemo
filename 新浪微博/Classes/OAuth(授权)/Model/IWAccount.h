@@ -34,6 +34,11 @@
  */
 @property (nonatomic, copy) NSString *uid;
 
+/**
+ *  账号的名称
+ */
+@property (nonatomic, copy) NSString *name;
+
 
 + (instancetype)accountWithDict:(NSDictionary *)dict;
 

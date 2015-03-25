@@ -7,7 +7,9 @@
 //
 
 #import "IWProfileViewController.h"
-
+#import "IWBaseSetting.h"
+#import "IWProfileCell.h"
+#import "IWSettingViewController.h"
 @interface IWProfileViewController ()
 
 @end
@@ -17,88 +19,113 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 设置发送聊天按钮
-    UIBarButtonItem *settting = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(setting)];
-    self.navigationItem.rightBarButtonItem = settting;
+   // 设置导航条
+    [self setUpNav];
     
-
+    // 添加group0
+    [self setUpGroup0];
+    // 添加group1
+    [self setUpGroup1];
+    // 添加group2
+    [self setUpGroup2];
+    // 添加group3
+    [self setUpGroup3];
+    
 }
+
+- (void)setUpGroup0
+{
+    
+    // 新的好友
+    IWArrowItem *friend = [IWArrowItem itemWithTitle:@"新的好友" image:[UIImage imageNamed:@"new_friend"]];
+
+    IWGroupItem *group = [[IWGroupItem alloc] init];
+ 
+    group.items = @[friend];
+    
+    [self.groups addObject:group];
+}
+
+- (void)setUpGroup1
+{
+    
+    // 我的相册
+    IWArrowItem *friend = [IWArrowItem itemWithTitle:@"我的相册" image:[UIImage imageNamed:@"album"]];
+    friend.subTitle = @"(12)";
+    // 我的收藏
+    IWArrowItem *collect = [IWArrowItem itemWithTitle:@"我的收藏" image:[UIImage imageNamed:@"collect"]];
+    collect.subTitle = @"(0)";
+    // 赞
+    IWArrowItem *like = [IWArrowItem itemWithTitle:@"赞" image:[UIImage imageNamed:@"like"]];
+    like.subTitle = @"(1)";
+    
+    IWGroupItem *group = [[IWGroupItem alloc] init];
+    
+    group.items = @[friend,collect,like];
+    
+    [self.groups addObject:group];
+}
+
+- (void)setUpGroup2
+{
+    
+    // 微博支付
+    IWArrowItem *pay = [IWArrowItem itemWithTitle:@"微博支付" image:[UIImage imageNamed:@"pay"]];
+    // 个性化
+    IWArrowItem *vip = [IWArrowItem itemWithTitle:@"个性化" image:[UIImage imageNamed:@"vip"]];
+    vip.subTitle = @"微博来源,皮肤,封面图";
+    
+    IWGroupItem *group = [[IWGroupItem alloc] init];
+    
+    group.items = @[pay,vip];
+    
+    [self.groups addObject:group];
+}
+- (void)setUpGroup3
+{
+    
+    // 我的二维码
+    IWArrowItem *card = [IWArrowItem itemWithTitle:@"我的二维码" image:[UIImage imageNamed:@"card"]];
+    // 草稿箱
+    IWArrowItem *draft = [IWArrowItem itemWithTitle:@"草稿箱" image:[UIImage imageNamed:@"draft"]];
+    
+    IWGroupItem *group = [[IWGroupItem alloc] init];
+    
+    group.items = @[card,draft];
+    
+    [self.groups addObject:group];
+}
+
+// 点击设置按钮的时候调用
 - (void)setting
 {
+    IWSettingViewController *settingVc = [[IWSettingViewController alloc] init];
+    
+    [self.navigationController pushViewController:settingVc animated:YES];
     IWLog(@"%s",__func__);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setUpNav
+{
+    // 设置发送聊天按钮
+    UIBarButtonItem *settting = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(setting)];
+    self.navigationItem.rightBarButtonItem = settting;
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+// 返回每一行长什么样子
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 1.创建cell
+    IWProfileCell *cell = [IWProfileCell cellWithTableView:tableView];
     
-    // Configure the cell...
+    // 2.给cell传递模型
+    IWGroupItem *group = self.groups[indexPath.section];
+    IWSettingItem *item = group.items[indexPath.row];
+    cell.item = item;
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

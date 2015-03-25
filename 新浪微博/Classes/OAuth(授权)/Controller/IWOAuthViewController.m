@@ -14,11 +14,10 @@
 
 #import "MBProgressHUD+MJ.h"
 #import "IWAccountTool.h"
+#import "IWHttpTool.h"
 
 
-#define IWAppkey @"2389394849"
-#define IWAppSecture @"03729d16a4cd277c7da26398f7a01282"
-#define IWRedirectUrl @"http://ios.itcast.cn"
+
 
 @interface IWOAuthViewController ()<UIWebViewDelegate>
 
@@ -96,40 +95,23 @@
 }
 
 
+// 换取accessToken
 - (void)accessTokenWithCode:(NSString *)code
 {
     // 获取accessToken:发送post请求 -> AFN
     
-    // 创建请求管理者
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 拼接参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    // 请求参数:key value:
-    params[@"client_id"] = IWAppkey;
-    params[@"client_secret"] = IWAppSecture;
-    params[@"grant_type"] = @"authorization_code";
-    params[@"code"] = code;
-    params[@"redirect_uri"] = IWRedirectUrl;
-
-    // 发送post请求 -> 获取accessToken
-    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) { // 请求成功的时候回调
-        // 字典转模型
-        IWAccount *account = [IWAccount accountWithDict:responseObject];
-   
-        // 保存模型
-        [IWAccountTool save:account];
+    // 获取accessToken
+    [IWAccountTool accessTokenWithCode:code success:^{
         
         // 获取主窗口
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
-
         
         // 选择进入新特性还是首页
         // 判断有没有新特性,从而选择窗口的根控制器
         [IWMainTool chooseRootViewController:window];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) { //请求失败的时候回调
-        IWLog(@"%@",error);
+    } failure:^(NSError *error) {
+        
     }];
     
 }

@@ -12,6 +12,7 @@
 #define IWUid @"uid"
 #define IWExpiresIn @"expires_in"
 #define IWExpiresDate @"expires_date"
+#define IWNameKey @"name"
 
 @implementation IWAccount
 
@@ -49,6 +50,8 @@
     [aCoder encodeObject:_uid forKey:IWUid];
     [aCoder encodeObject:_expires_in forKey:IWExpiresIn];
     [aCoder encodeObject:_expires_date forKey:IWExpiresDate];
+    
+    [aCoder encodeObject:_name forKey:IWNameKey];
 }
 
 //  告诉系统哪些属性需要解档
@@ -59,6 +62,7 @@
         _access_token = [aDecoder decodeObjectForKey:IWAccessToken];
         _uid = [aDecoder decodeObjectForKey:IWUid];
         _expires_date = [aDecoder decodeObjectForKey:IWExpiresDate];
+        _name = [aDecoder decodeObjectForKey:IWNameKey];
     }
     return self;
 }

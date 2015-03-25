@@ -8,6 +8,7 @@
 
 #import "IWTabBar.h"
 #import "IWTabBarButton.h"
+
 @interface IWTabBar ()
 
 @property (nonatomic, weak) UIButton *addButton;
@@ -37,6 +38,7 @@
         [add setImage:[UIImage imageNamed:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
         [add setImage:[UIImage imageNamed:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
         
+        [add addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
         // 自动算出控件最合适的尺寸
         [add sizeToFit];
         
@@ -46,6 +48,12 @@
         
     }
     return _addButton;
+}
+// 点击添加按钮的时候调用
+- (void)addBtnClick
+{
+    // 通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:IWAddBtnClickNote object:nil];
 }
 
 // 添加TabBarButton
@@ -69,7 +77,7 @@
     [self.tabBarButtons addObject:button];
 }
 
-
+// 点击按钮的时候调用
 - (void)btnClick:(UIButton *)button
 {
     _selectedButton.selected = NO;

@@ -7,7 +7,10 @@
 // 处理账号的业务逻辑
 
 #import "IWAccountTool.h"
-#import "IWAccount.h"
+#import "IWHttpTool.h"
+#import "IWAccountParam.h"
+#import "MJExtension.h"
+
 #define IWAccountFile [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"account.data"]
 
 @implementation IWAccountTool
@@ -33,6 +36,37 @@
     }
     
     return account;
+}
+
++ (void)accessTokenWithCode:(id)code success:(void (^)())success failure:(void (^)(NSError *))failure
+{
+    // 创建参数模型
+    IWAccountParam *param = [[IWAccountParam alloc] init];
+    param.client_id = IWAppkey;
+    param.client_secret = IWAppSecture;
+    param.grant_type = @"authorization_code";
+    param.code = code;
+    param.redirect_uri = IWRedirectUrl;
+    
+    // 发送post -> HttpTool
+    [IWHttpTool POST:@"https://api.weibo.com/oauth2/access_token" parameters:param.keyValues success:^(id responseObject) {
+        // 成功获取accessToken
+        // 字典转模型
+        // 创建账号
+        IWAccount *account = [IWAccount accountWithDict:responseObject];
+        
+        // 保存模型
+        [IWAccountTool save:account];
+        
+        if (success) {
+            success();
+        }
+
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 @end

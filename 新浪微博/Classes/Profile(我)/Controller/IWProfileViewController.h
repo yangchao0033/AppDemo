@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 itcast. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "IWBaseSettingViewController.h"
 
-@interface IWProfileViewController : UITableViewController
+@interface IWProfileViewController : IWBaseSettingViewController
 
 @end

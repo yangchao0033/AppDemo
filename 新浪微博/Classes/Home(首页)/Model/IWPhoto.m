@@ -10,4 +10,12 @@
 
 @implementation IWPhoto
 
+- (void)setThumbnail_pic:(NSURL *)thumbnail_pic
+{
+    
+    NSString *urlStr = thumbnail_pic.absoluteString;
+   urlStr = [urlStr stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+    
+    _thumbnail_pic = [NSURL URLWithString:urlStr];
+}
 @end

@@ -25,23 +25,36 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 
+#import "IWHttpTool.h"
+#import "IWStatusTool.h"
+
+#import "IWUserTool.h"
+
+#import "IWStatusCell.h"
+#import "IWStatusFrame.h"
+
+
 
 @interface IWHomeViewController ()
 
-@property (nonatomic, strong) NSMutableArray *statuses;
+@property (nonatomic, strong) NSMutableArray *statusFrameArr;
 
 @property (nonatomic, weak) IWTitleButton *titleButton;
 
 @property (nonatomic, strong) IWPopViewController *popVc;
+
+// 记录当前有没有刷新更新的数据
+@property (nonatomic, assign) BOOL isrefreshing;
+
 @end
 
 @implementation IWHomeViewController
-- (NSMutableArray *)statuses
+- (NSMutableArray *)statusFrameArr
 {
-    if (_statuses == nil) {
-        _statuses = [NSMutableArray array];
+    if (_statusFrameArr == nil) {
+        _statusFrameArr = [NSMutableArray array];
     }
-    return _statuses;
+    return _statusFrameArr;
 }
 - (IWPopViewController *)popVc
 {
@@ -57,11 +70,14 @@
     // 设置首页导航条的内容
     [self setUpNavBar];
     
-    // 获取最新的微博数据
-    [self loadNewStatuses];
-    
     // 添加上下拉刷新控件
     [self setUpRefresh];
+    
+    
+    // 取消分割线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.backgroundColor = IWColor(201, 201, 201);
+    
 
 }
 
@@ -71,95 +87,175 @@
     // 当你下拉的时候就会调用Target对象action方法
     [self.tableView addHeaderWithTarget:self action:@selector(loadNewStatuses)];
     
+    // 手动下拉刷新
+    [self.tableView headerBeginRefreshing];
+    
     
     // 添加上拉刷新控件
     // 当你上拉的时候就会调用Target对象action方法
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreStatuses)];
 }
 
+- (void)refresh
+{
+    // 下拉效果
+    [self.tableView headerBeginRefreshing];
+}
+
 // 获取最多的微博数据
 - (void)loadMoreStatuses
 {
-    // 创建请求管理者
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     
+    // 上啦刷新 通知tabBar记录总共的未读数
+    /**
+     *  NotificationName:通知的名称
+        object:谁发出的通知
+     */
+    [[NSNotificationCenter defaultCenter] postNotificationName:IWBeginMoreNote object:nil];
+
     
-    // 拼接参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    
-    // 判断数组有没有微博值
-    if (self.statuses.count) {
-        IWStatus *s = [self.statuses lastObject];
-        params[@"max_id"] = @([s.idstr longLongValue] - 1);
+      // 判断数组有没有微博值
+    id maxId = nil;
+    if (self.statusFrameArr.count) {
+        IWStatusFrame *sf = [self.statusFrameArr lastObject];
+        IWStatus *s = sf.status;
+        // 设置maxId值
+        maxId = @([s.idstr longLongValue] - 1);
+
     }
-    
-    // 发送get请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // 停止尾部刷新
+    // 获取更多的微博数据
+    [IWStatusTool moreStatusWithMaxID:maxId success:^(NSArray *statuses) {
+        
+        // IWStatus -> VM -> IWStatusFrame(所有子控件frame 和 IWStatus)
+        
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (IWStatus *s  in statuses) {
+            IWStatusFrame *statusF = [[IWStatusFrame alloc] init];
+            statusF.status = s;
+            
+            [arrM addObject:statusF];
+        }
+        
+        
+        // 1.停止尾部刷新
         [self.tableView footerEndRefreshing];
         
-        
-        // 把返回的数据转换成模型
-        NSArray *dictArr = responseObject[@"statuses"];
-        NSMutableArray *arrM = [NSMutableArray array];
-        for (NSDictionary *dict in dictArr) {
-            IWStatus *s =  [IWStatus objectWithKeyValues:dict];
-            [arrM addObject:s];
-        }
-        // 用成员变量保存数据
+        // 2.用成员变量保存数据
         // 遍历arrM所有元素添加self.statuses,而不是直接把arrM数组添加
-        [self.statuses addObjectsFromArray:arrM];
+        [self.statusFrameArr addObjectsFromArray:arrM];
         
         // 获取到新数据的时候,刷新表格
         [self.tableView reloadData];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         
     }];
-
+   
+    
 }
-     
+
+
 // 获取最新的微博数据
 - (void)loadNewStatuses
 {
-    // 创建请求管理者
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     
-    // 拼接参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
+    // 正在刷新,就不需要发送请求
+    if (_isrefreshing) return;
     
+    // 加载最新的时候发出通知,把之前记录总共的未读数清空
+     [[NSNotificationCenter defaultCenter] postNotificationName:IWBeginNewNote object:nil];
+    
+    // 正在刷新
+    _isrefreshing = YES;
+    id sinceID = nil;
+    
+
     // 判断数组有没有微博值
-    if (self.statuses.count) {
-        IWStatus *s = [self.statuses firstObject];
-        params[@"since_id"] = s.idstr;
+    if (self.statusFrameArr.count) {
+        IWStatusFrame *sf = [self.statusFrameArr firstObject];
+        IWStatus *s = sf.status;
+        sinceID = s.idstr;
+  
     }
-    
-    // 发送get请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+    // 获取最新微博数据
+    [IWStatusTool newStatusWithSinceID:sinceID success:^(NSArray *statuses) {
+        
+        // 刷新结束
+        _isrefreshing = NO;
+        // IWStatus -> VM -> IWStatusFrame(所有子控件frame 和 IWStatus)
+        
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (IWStatus *s  in statuses) {
+            IWStatusFrame *statusF = [[IWStatusFrame alloc] init];
+            statusF.status = s;
+            
+            [arrM addObject:statusF];
+        }
+        
+        // 提示最新微博数
+        [self showNewStatusesCount:statuses.count];
+        
         // 停止头部刷新
         [self.tableView headerEndRefreshing];
         
-        // 把返回的数据转换成模型
-        NSArray *dictArr = responseObject[@"statuses"];
-        NSMutableArray *arrM = [NSMutableArray array];
-        for (NSDictionary *dict in dictArr) {
-          IWStatus *s =  [IWStatus objectWithKeyValues:dict];
-         [arrM addObject:s];
-        }
-        NSLog(@"%d",arrM.count);
-        NSRange range = NSMakeRange(0, arrM.count);
+        // 把最新的微博数据插入到微博数组中
+        NSRange range = NSMakeRange(0, statuses.count);
         // location : 插入哪个角标
         // len :插入个数:最新微博数组的个数
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         // 用成员变量保存数据
-        [self.statuses insertObjects:arrM atIndexes:indexSet];
+        [self.statusFrameArr insertObjects:arrM atIndexes:indexSet];
         
         // 获取到新数据的时候,刷新表格
         [self.tableView reloadData];
+
+    } failure:^(NSError *error) {
+        // 刷新结束
+        _isrefreshing = NO;
+    }];
+}
+
+// 提示最新微博数
+- (void)showNewStatusesCount:(NSInteger)count
+{
+
+    if (count == 0) return;
+//    self.view = self.tableView
+    
+    CGFloat labelH = 35;
+    CGFloat labelY = 64-labelH;
+    CGFloat labelW = self.view.width;
+    CGFloat labelX = 0;
+    
+    // 弹出最新微博数控件
+    UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelX, labelY, labelW, labelH)];
+    
+    // 设置微博数
+    statusLabel.text = [NSString stringWithFormat:@"%ld 条新微博数",count];
+    statusLabel.textAlignment = NSTextAlignmentCenter;
+    statusLabel.textColor = [UIColor whiteColor];
+    statusLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
+    
+    // 把statusLabel插入到导航条下面
+    [self.navigationController.view insertSubview:statusLabel belowSubview:self.navigationController.navigationBar];
+    
+    // 做动画
+    CGFloat durtion = 0.25;
+    [UIView animateWithDuration:durtion animations:^{
+        // 往下移动
+        statusLabel.transform = CGAffineTransformMakeTranslation(0, labelH);
+    } completion:^(BOOL finished) {
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // 延迟1秒,在做动画,往上移动
+        [UIView animateWithDuration:durtion delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
+            
+            // 把形变清空
+            statusLabel.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            // 移除导航控制器
+            [statusLabel removeFromSuperview];
+            
+        }];
         
     }];
 }
@@ -181,7 +277,20 @@
     IWTitleButton *titleButton = [IWTitleButton buttonWithType:UIButtonTypeCustom];
     _titleButton = titleButton;
     
-    [titleButton setTitle:@"首页" forState:UIControlStateNormal];
+    // 获取登录用户的信息(名称)
+    NSString *name = [IWAccountTool account].name;
+    
+    // 都需要请求用户,防止以后用户把名称改了
+    [IWUserTool userInfoDidSuccess:^(IWUser *user) { // 获取用户成功就会调用这个block
+        
+        [self.titleButton setTitle:user.name forState:UIControlStateNormal];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
+
+    [titleButton setTitle:name?name:@"首页" forState:UIControlStateNormal];
     [titleButton setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
     [titleButton setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateSelected];
     [titleButton addTarget:self action:@selector(titleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -232,29 +341,20 @@
 // 有多少cell
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.statuses.count;
+    return self.statusFrameArr.count;
 }
 
 
+// 返回每个cell长什么样子,一有新的cell出现就会调用
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    IWStatus *status = self.statuses[indexPath.row];
-    cell.textLabel.text = status.user.name;
-    cell.detailTextLabel.text = status.text;
+    // 创建cell
+    IWStatusCell *cell = [IWStatusCell cellWithTable:tableView];
     
-    // 发送异步下载,不能直接拿到cell去设置图片,下载完一个,给模型赋值
-    // 下载完之后,指定刷新某一行
-    
-    // 用了异步请求,防止阻塞主线程
-    // 解决了循环利用
-    [cell.imageView sd_setImageWithURL:status.user.profile_image_url placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
-    // Configure the cell...
-    
+    // 传递模型
+    IWStatusFrame *sf = self.statusFrameArr[indexPath.row];
+    cell.sf = sf;
+
     return cell;
 }
 
@@ -267,8 +367,11 @@
     
 }
 
-
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    IWStatusFrame *sf = self.statusFrameArr[indexPath.row];
+    return sf.cellH;
+}
 
 
 @end

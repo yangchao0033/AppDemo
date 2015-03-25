@@ -30,6 +30,12 @@
     
     // 给模型设置富文本属性(可以设置字符串的一些颜色,字体大小)
     [barItem setTitleTextAttributes:textDict forState:UIControlStateNormal];
+    // 创建文本的属性字典
+    NSMutableDictionary *disableDict = [NSMutableDictionary dictionary];
+    disableDict[NSForegroundColorAttributeName] = [UIColor lightGrayColor];
+    
+    // 给模型设置富文本属性(可以设置字符串的一些颜色,字体大小)
+    [barItem setTitleTextAttributes:disableDict forState:UIControlStateDisabled];
 
 }
 
@@ -74,6 +80,8 @@
         // 设置导航条的按钮
         viewController.navigationItem.rightBarButtonItem = popRoot;
         
+        // push的时候隐藏底部条
+        viewController.hidesBottomBarWhenPushed = YES;
     }
 
     

@@ -11,15 +11,24 @@
 #import "IWMainTool.h"
 #import "IWAccount.h"
 #import "IWAccountTool.h"
+#import "UIImageView+WebCache.h"
+
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) AVAudioPlayer *player;
 @end
 
 @implementation AppDelegate
 
 // 程序启动完成的时候调用
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // 注册提醒通知
+    if (iOS8) { // ios8才需要注册通知
+        UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+        [application registerUserNotificationSettings:setting];
+    }
     
     // 1.创建窗口
     self.window = [[UIWindow alloc] initWithFrame:IWScreenSizes];
@@ -31,7 +40,8 @@
     if (account.access_token) { // 有
         // 判断有没有新特性,从而选择窗口的根控制器
     [IWMainTool chooseRootViewController:self.window];
-    }else{ // 木有
+    }
+    else{ // 木有
     
         // 进入授权
         IWOAuthViewController *oauth = [[IWOAuthViewController alloc] init];
@@ -50,11 +60,58 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
 }
 
+// 当我们的应用程序接收到内存警告的时候就会调用
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    // 1.停止所有图片下载
+    [[SDWebImageManager sharedManager] cancelAll];
+    
+    // 2.删除所有的内存缓存
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+    
+    
+}
+
+
+// test code test code test code  test code test code
+// 1 2 3 4 5 6 7 8 9 1 2 3
+// test code
+
+// 进入后台的时候调用,ios7中做后台运行处理,就再此方法中做
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    // 开启后台任务,这个时间是不确定,由系统决定.如果后台任务被关掉,程序就不能后台运行
+   UIBackgroundTaskIdentifier taskID = [application beginBackgroundTaskWithExpirationHandler:^{
+       // 程序关闭的时候,就会调用
+        // 主动关闭后台任务
+       [application endBackgroundTask:taskID];
+       
+    }];
+    
+    
+    
+    if (!iOS8) {
+        // 播放,新浪微博给一个没有声音的Mp3,目的是需要告诉苹果,我在播放东西,并不需要让用户听到.
+        // 创建本地播放对象
+        // url:要播放文件的url
+        // 获取url,从bundle里面获取
+        // 获取本地播放文件的url
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"silence.mp3" withExtension:nil];
+        AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        _player = player;
+        
+        // -1无限播放
+        player.numberOfLoops = -1;
+        
+        [player prepareToPlay];
+        
+        [player play];
+ 
+    }
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

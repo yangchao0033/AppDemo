@@ -10,4 +10,11 @@
 
 @implementation IWUser
 
+- (void)setMbtype:(int)mbtype
+{
+    _mbtype = mbtype;
+    /** 会员类型 > 2代表是会员 */
+    _vip = mbtype > 2;
+}
+
 @end

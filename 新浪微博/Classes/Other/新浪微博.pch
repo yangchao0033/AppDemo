@@ -13,13 +13,30 @@
 #import "UIImage+image.h"
 #import "UIView+Frame.h"
 #import "UIBarButtonItem+Create.h"
+#import "Weibocfg.h"
 
+
+#define iOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+
+#define IWColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0  blue:(b)/255.0  alpha:1]
 #define IWKeywindow [UIApplication sharedApplication].keyWindow
 #define IWScreenSizes [UIScreen mainScreen].bounds
+#define IWScreenWidth  IWScreenSizes.size.width
 #ifdef DEBUG /// 调试阶段
 #define IWLog(...) NSLog(__VA_ARGS__)
 #else // 发布阶段
 #define IWLog(...)
 #endif
+
+
+
+/*通知的宏*/
+/*首页*/
+#define IWBeginMoreNote @"beginMore"
+#define IWBeginNewNote @"beginNew"
+
+/*tabBar*/
+#define IWAddBtnClickNote @"addBtnClickNote"
+
 
 #endif

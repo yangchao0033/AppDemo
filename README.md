@@ -1,6 +1,7 @@
-# BiSheStatus
+# SinaWeiBo
 修改大多数bug，并完善所有主要功能
 
+__`涉及技术翻译`__
 
 #动画时间控制
 

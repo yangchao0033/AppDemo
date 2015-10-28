@@ -5,7 +5,7 @@
 //  Created by apple on 14/11/30.
 //  Copyright (c) 2014年 itcast. All rights reserved.
 //
-
+#import <JDStatusBarNotification/JDStatusBarNotification.h>
 #import "IWCommonSettingViewController.h"
 #import "IWBaseSetting.h"
 #import "IWFontSizeViewController.h"
@@ -112,6 +112,7 @@
 
 - (void)setUpGroup4
 {
+    
     __weak typeof(self) weakSelf = self;
     // 清空图片缓存
     IWArrowItem *clearImage = [IWArrowItem itemWithTitle:@"清空图片缓存"];
@@ -124,10 +125,13 @@
         sizeStr = [NSString stringWithFormat:@"%.1fMB",floatSize];
     }
     clearImage.subTitle = sizeStr;
+    __weak typeof (clearImage) weakClearImage = clearImage;
     clearImage.option = ^(IWCheakItem *item){
         // 清空所有的硬盘缓存
+        [JDStatusBarNotification showWithStatus:@"正在清理缓存..." dismissAfter:2.0 styleName:JDStatusBarStyleDark];
         [[SDImageCache sharedImageCache] clearDisk];
         item.subTitle = nil;
+        weakClearImage.subTitle = @"0.0KB";
         [weakSelf.tableView reloadData];
     };
     IWGroupItem *group = [[IWGroupItem alloc] init];

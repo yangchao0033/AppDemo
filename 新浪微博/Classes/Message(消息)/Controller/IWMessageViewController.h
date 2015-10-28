@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface IWMessageViewController : UITableViewController
-
+@property (nonatomic, copy) void(^displayIconBlock)(UIImageView *icon);
 @end

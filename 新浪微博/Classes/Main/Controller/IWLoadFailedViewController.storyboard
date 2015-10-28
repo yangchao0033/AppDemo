@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NTw-CN-wnq">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Load Failed View Controller-->
+        <scene sceneID="w4e-kB-yXO">
+            <objects>
+                <viewController id="NTw-CN-wnq" customClass="IWLoadFailedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q5Z-5w-oMf"/>
+                        <viewControllerLayoutGuide type="bottom" id="A8h-id-KwO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2yO-m3-jeY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="001.png" translatesAutoresizingMaskIntoConstraints="NO" id="9vj-oh-Bob" customClass="IW">
+                                <rect key="frame" x="16" y="20" width="568" height="470"/>
+                                <color key="backgroundColor" red="1" green="0.058490150711232647" blue="0.12421851817090035" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea7-vl-xQb">
+                                <rect key="frame" x="16" y="490" width="568" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EF8-YX-OrI">
+                                        <rect key="frame" x="354" y="27" width="40" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Aj5-oC-xRz"/>
+                                            <constraint firstAttribute="height" constant="36" id="dGG-FB-cej"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="刷新">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="refreshLogin:" destination="NTw-CN-wnq" eventType="touchUpInside" id="fcr-Nw-JIq"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="网络不给力啊" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPN-Sb-XNW">
+                                        <rect key="frame" x="134" y="25" width="120" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="TpL-n6-Sc0"/>
+                                            <constraint firstAttribute="height" constant="39" id="bhi-8q-jii"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="EF8-YX-OrI" secondAttribute="centerX" constant="-90" id="8Kg-ra-TGZ"/>
+                                    <constraint firstAttribute="centerY" secondItem="EF8-YX-OrI" secondAttribute="centerY" id="S4T-8K-ZoI"/>
+                                    <constraint firstAttribute="centerY" secondItem="TPN-Sb-XNW" secondAttribute="centerY" id="V8V-qv-6dX"/>
+                                    <constraint firstAttribute="height" constant="90" id="ana-1d-4qm"/>
+                                    <constraint firstAttribute="centerX" secondItem="TPN-Sb-XNW" secondAttribute="centerX" constant="90" id="daa-LQ-eA2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ea7-vl-xQb" firstAttribute="leading" secondItem="2yO-m3-jeY" secondAttribute="leadingMargin" id="2kA-Dc-Wty"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9vj-oh-Bob" secondAttribute="trailing" id="3Tc-ch-geC"/>
+                            <constraint firstItem="ea7-vl-xQb" firstAttribute="top" secondItem="9vj-oh-Bob" secondAttribute="bottom" id="Jel-zX-2dz"/>
+                            <constraint firstItem="A8h-id-KwO" firstAttribute="top" secondItem="ea7-vl-xQb" secondAttribute="bottom" constant="20" id="P33-mO-i0F"/>
+                            <constraint firstItem="9vj-oh-Bob" firstAttribute="leading" secondItem="2yO-m3-jeY" secondAttribute="leadingMargin" id="jG7-cQ-y6N"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ea7-vl-xQb" secondAttribute="trailing" id="t9A-JK-8YS"/>
+                            <constraint firstItem="9vj-oh-Bob" firstAttribute="top" secondItem="q5Z-5w-oMf" secondAttribute="bottom" id="zY6-x3-Eme"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iAp-fG-Ghe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="255" y="237"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="001.png" width="600" height="393"/>
+    </resources>
+</document>

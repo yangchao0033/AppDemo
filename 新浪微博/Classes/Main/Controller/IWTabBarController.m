@@ -86,7 +86,7 @@
     // 加入主允许循环,并且设置模式为NSRunLoopCommonModes,就会让系统抽出时间来触发这个定时器
    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadUnreadCount) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    
+
     // 接收上啦刷新通知
     /**
      *  self谁监听通知
@@ -101,11 +101,14 @@
 // 只要点击添加按钮就会调用
 - (void)addBtnClick
 {
+#warning 替换为sb
     // modal发送微博控制器,包装成导航控制器
-    IWComposeViewController *composeVc = [[IWComposeViewController alloc] init];
-    IWNavigationController *nav = [[IWNavigationController alloc] initWithRootViewController:composeVc];
+    UIStoryboard *sb1 = [UIStoryboard storyboardWithName:@"IWComposeViewController" bundle:nil];
+    IWComposeViewController *vc = sb1.instantiateInitialViewController;
+//    IWComposeViewController *composeVc = [[IWComposeViewController alloc] init];
+//    IWNavigationController *nav = [[IWNavigationController alloc] initWithRootViewController:vc];
     
-    [self presentViewController:nav animated:YES completion:nil];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 - (void)dealloc
 {
@@ -174,19 +177,23 @@
     [self setUpOneChildViewController:home title:@"首页" image:[UIImage imageNamed:@"tabbar_home"] selImage:[UIImage imageNamed:@"tabbar_home_selected"]];
     
     // 消息
-    IWMessageViewController *message = [[IWMessageViewController alloc] init];
+//    IWMessageViewController *message = [[IWMessageViewController alloc] init];
+    UIStoryboard *sb1 = [UIStoryboard storyboardWithName:@"IWMessageViewController" bundle:nil];
+    IWMessageViewController *message = sb1.instantiateInitialViewController;
     _message = message;
-    message.view.backgroundColor = [UIColor redColor];
     [self setUpOneChildViewController:message title:@"消息" image:[UIImage imageNamed:@"tabbar_message_center"] selImage:[UIImage imageNamed:@"tabbar_message_center_selected"]];
     
     // 广场
-    IWDiscoverViewController *discover = [[IWDiscoverViewController alloc] init];
+    UIStoryboard *sb2 = [UIStoryboard storyboardWithName:@"IWDiscoverViewController" bundle:nil];
+    IWMessageViewController *discover = sb2.instantiateInitialViewController;
+//    IWDiscoverViewController *discover = [[IWDiscoverViewController alloc] init];
     
     [self setUpOneChildViewController:discover title:@"广场" image:[UIImage imageNamed:@"tabbar_discover"] selImage:[UIImage imageNamed:@"tabbar_discover_selected"]];
 
-    
+    UIStoryboard *sb3 = [UIStoryboard storyboardWithName:@"IWProfileViewController" bundle:nil];
+    IWProfileViewController *profile = sb3.instantiateInitialViewController;
     // 我
-    IWProfileViewController *profile = [[IWProfileViewController alloc] init];
+//    IWProfileViewController *profile = [[IWProfileViewController alloc] init];
     _profile = profile;
     [self setUpOneChildViewController:profile title:@"我" image:[UIImage imageNamed:@"tabbar_profile"] selImage:[UIImage imageNamed:@"tabbar_profile_selected"]];
 

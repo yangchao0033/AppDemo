@@ -5,14 +5,15 @@
 //  Created by apple on 14-11-20.
 //  Copyright (c) 2014年 itcast. All rights reserved.
 //
-
+#import "YCOneViewController.h"
 #import "IWHomeViewController.h"
 #import "IWTitleButton.h"
 #import "IWPopView.h"
 #import "IWPopViewController.h"
 #import "IWCover.h"
 #import "IWOneViewController.h"
-
+#import "QRCodeReaderViewController.h"
+#import "IWAccount.h"
 #import "AFNetworking.h"
 
 #import "IWAccountTool.h"
@@ -33,15 +34,20 @@
 #import "IWStatusCell.h"
 #import "IWStatusFrame.h"
 
+#import "IWMessageViewController.h"
+#import "YCWebViewController.h"
 
-
-@interface IWHomeViewController ()
+@interface IWHomeViewController ()<QRCodeReaderDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *statusFrameArr;
 
 @property (nonatomic, weak) IWTitleButton *titleButton;
 
 @property (nonatomic, strong) IWPopViewController *popVc;
+
+@property (nonatomic, strong) UIButton *btn;
+
+@property (nonatomic, copy)NSString *QRresult;
 
 // 记录当前有没有刷新更新的数据
 @property (nonatomic, assign) BOOL isrefreshing;
@@ -67,6 +73,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 取消autoResizing
+    self.tableView.autoresizingMask = NO;
     // 设置首页导航条的内容
     [self setUpNavBar];
     
@@ -77,10 +85,15 @@
     // 取消分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    self.tableView.backgroundColor = IWColor(201, 201, 201);
-    
+
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    [self titleButtonClick:nil];
+}
 - (void)setUpRefresh
 {
     // 添加下拉刷新控件
@@ -218,34 +231,27 @@
 // 提示最新微博数
 - (void)showNewStatusesCount:(NSInteger)count
 {
-
     if (count == 0) return;
 //    self.view = self.tableView
-    
     CGFloat labelH = 35;
     CGFloat labelY = 64-labelH;
     CGFloat labelW = self.view.width;
     CGFloat labelX = 0;
-    
     // 弹出最新微博数控件
     UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelX, labelY, labelW, labelH)];
-    
     // 设置微博数
     statusLabel.text = [NSString stringWithFormat:@"%ld 条新微博数",count];
     statusLabel.textAlignment = NSTextAlignmentCenter;
     statusLabel.textColor = [UIColor whiteColor];
     statusLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
-    
     // 把statusLabel插入到导航条下面
     [self.navigationController.view insertSubview:statusLabel belowSubview:self.navigationController.navigationBar];
-    
     // 做动画
     CGFloat durtion = 0.25;
     [UIView animateWithDuration:durtion animations:^{
         // 往下移动
         statusLabel.transform = CGAffineTransformMakeTranslation(0, labelH);
     } completion:^(BOOL finished) {
-        
         // 延迟1秒,在做动画,往上移动
         [UIView animateWithDuration:durtion delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
             
@@ -270,13 +276,15 @@
     self.navigationItem.leftBarButtonItem = left;
     
     // 创建右边item
-    UIBarButtonItem *right = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"navigationbar_pop"] highImage:[UIImage imageNamed:@"navigationbar_pop_highlighted"] target:nil action:nil];
+    UIBarButtonItem *right = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"navigationbar_pop"] highImage:[UIImage imageNamed:@"navigationbar_pop_highlighted"] target:self
+ action:@selector(openQRCode)];
     self.navigationItem.rightBarButtonItem = right;
     
     // titleView
     IWTitleButton *titleButton = [IWTitleButton buttonWithType:UIButtonTypeCustom];
     _titleButton = titleButton;
-    
+    self.navigationItem.titleView = titleButton;
+//    [self.navigationItem.titleView layoutIfNeeded];
     // 获取登录用户的信息(名称)
     NSString *name = [IWAccountTool account].name;
     
@@ -289,13 +297,13 @@
         
     }];
 
-
     [titleButton setTitle:name?name:@"首页" forState:UIControlStateNormal];
     [titleButton setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
     [titleButton setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateSelected];
     [titleButton addTarget:self action:@selector(titleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.titleView = titleButton;
+    titleButton.selected = YES;
+    [self titleButtonClick:titleButton];
+//    [self titleButtonClick:titleButton];
 }
 
 #pragma mark - 点击标题按钮的时候调用
@@ -303,10 +311,13 @@
 {
     button.selected = !button.selected;
     
+    self.btn = button;
+    
+    IWCover *cover = nil;
     if (button.selected) {
         
         // 添加遮盖
-        IWCover *cover = [IWCover show];
+        cover = [IWCover show];
         cover.dimBackground = YES;
         cover.dismissCompletion = ^{
             [IWPopView dismiss];
@@ -322,21 +333,50 @@
         popView.contentView = self.popVc.view;
        
     }else{
+//        [IWKeywindow addSubview:cover];
+//        [cover removeFromSuperview];
+//        cover.backgroundColor = [UIColor clearColor];
         [IWPopView dismiss];
     }
-   
-    
 }
 
 
 // 点击导航条左边按钮调用
 - (void)friendsearch
 {
-    IWLog(@"%s",__func__);
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"IWMessageViewController" bundle:nil];
+    IWMessageViewController *vc = sb.instantiateInitialViewController;
+
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)openQRCode
+{
+//    static QRCodeReaderViewController *reader = nil;
+//    static dispatch_once_t onceToken;
+//    
+//    dispatch_once(&onceToken, ^{
+//        reader                        = [QRCodeReaderViewController new];
+//        reader.modalPresentationStyle = UIModalPresentationFormSheet;
+//    });
+//    reader.delegate = self;
+//    
+//    [reader setCompletionWithBlock:^(NSString *resultAsString) {
+//        NSLog(@"Completion with result: %@", resultAsString);
+//    }];
+//    
+//    [self presentViewController:reader animated:YES completion:NULL];
+    YCOneViewController *vc = [UIStoryboard storyboardWithName:@"YCOneViewController" bundle:nil].instantiateInitialViewController;
+    [self presentViewController:vc animated:YES completion:nil];
+}
 
-
+#pragma mark - Table view delegate
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"%s", __func__);
+    // 显示动画
+    
+}
 #pragma mark - Table view data source
 // 有多少cell
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -361,9 +401,29 @@
 // 点击一行Cell的时候调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    IWOneViewController *one = [[IWOneViewController alloc] init];
-   
-    [self.navigationController pushViewController:one animated:YES];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"YCWebViewController" bundle:nil];
+    YCWebViewController *vc = sb.instantiateInitialViewController;
+//    __weak typeof(self) weakSelf = self;
+    __weak typeof(vc) weakVc = vc;
+    vc.loadData = ^{
+//        IWAccount *account = [IWAccountTool account];
+//        NSString *uid = account.uid;
+        //    NSString *urlStr = [NSString stringWithFormat:@"http://m.weibo.cn/u/%@" ,uid];
+        // http://m.weibo.cn/page/tpl?containerid=1005053266043817_-_WEIBO_SECOND_PROFILE_WEIBO&itemid=&title=全部微博
+        NSString *urlStr = [@"http://m.weibo.cn/page/tpl?containerid=1005053266043817_-_WEIBO_SECOND_PROFILE_WEIBO&itemid=&title=全部微博" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        /*
+         UIModalTransitionStyleCoverVertical = 0,
+         UIModalTransitionStyleFlipHorizontal,
+         UIModalTransitionStyleCrossDissolve,
+         UIModalTransitionStylePartialCurl
+         */
+        NSURL *url = [NSURL URLWithString:urlStr];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [weakVc.webView loadRequest:request];
+    };
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:vc animated:YES completion:nil];
+    
     
 }
 
@@ -374,4 +434,27 @@
 }
 
 
+
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
+{
+    self.QRresult = result;
+    NSString *message = [NSString stringWithFormat:@"确认打开该链接“%@”？", result];
+    [self dismissViewControllerAnimated:YES completion:^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"二维码链接:" message:message delegate:self cancelButtonTitle:@"确认" otherButtonTitles:@"取消", nil];
+        [alert show];
+    }];
+}
+
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSURL *url = [NSURL URLWithString:self.QRresult];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
 @end

@@ -30,7 +30,7 @@
     // 提及
     [self setUpOneChildViewWithImage:[UIImage imageNamed:@"compose_mentionbutton_background"] highImg:[UIImage imageNamed:@"compose_mentionbutton_background_highlighted"]];
     // 趋势
-    [self setUpOneChildViewWithImage:[UIImage imageNamed:@"compose_trendbutton_background"] highImg:[UIImage imageNamed:@"compose_trendbutton_background_highlighted"]];
+    [self setUpOneChildViewWithImage:[UIImage imageNamed:@"compose_camerabutton_background_os7"] highImg:[UIImage imageNamed:@"compose_camerabutton_background_highlighted_os7"]];
     // 表情
     [self setUpOneChildViewWithImage:[UIImage imageNamed:@"compose_emoticonbutton_background"] highImg:[UIImage imageNamed:@"compose_emoticonbutton_background_highlighted"]];
     // 键盘

@@ -8,6 +8,7 @@
 
 #import "IWBaseSettingViewController.h"
 
-@interface IWProfileViewController : IWBaseSettingViewController
+//@interface IWProfileViewController : IWBaseSettingViewController
+@interface IWProfileViewController : UITableViewController
 
 @end

@@ -29,14 +29,26 @@
 #endif
 
 
-
+//#define IWAppkey @"3299010619"
+//#define IWAppSecture @"4d287ce2265ae84328adc4fbdaa4ee6e"
+//#define IWRedirectUrl @"http://ios.itcast.cn"
+//#define IWAppkey @"3497426283"
+//#define IWAppSecture @"b651b95fd0d21bfe4b1777a3301c7ac3"
+//#define IWRedirectUrl @"http://ios.itcast.cn"
+#define IWAppkey @"4074267285"
+#define IWAppSecture @"c462b25b1e06cfeac4e5216eb607e22a"
+#define IWRedirectUrl @"http://ios.itcast.cn"
 /*通知的宏*/
 /*首页*/
 #define IWBeginMoreNote @"beginMore"
 #define IWBeginNewNote @"beginNew"
-
+/*授权*/
+#define YCAppWillEnterFore @"AppEnter"
+/*刷新*/
+#define YCLoginRefresh @"loginRefresh"
 /*tabBar*/
 #define IWAddBtnClickNote @"addBtnClickNote"
-
+#define YC_DID_ADD_PIC @"addClick"
+#define YC_DID_DELETE_PIC @"deleteCilck"
 
 #endif

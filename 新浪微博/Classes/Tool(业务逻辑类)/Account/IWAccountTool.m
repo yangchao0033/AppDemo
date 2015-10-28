@@ -47,15 +47,14 @@
     param.grant_type = @"authorization_code";
     param.code = code;
     param.redirect_uri = IWRedirectUrl;
-    
     // 发送post -> HttpTool
     [IWHttpTool POST:@"https://api.weibo.com/oauth2/access_token" parameters:param.keyValues success:^(id responseObject) {
         // 成功获取accessToken
         // 字典转模型
         // 创建账号
         IWAccount *account = [IWAccount accountWithDict:responseObject];
-        
-        // 保存模型
+        NSLog(@"%@", account.uid);
+        // 保存模型到沙盒
         [IWAccountTool save:account];
         
         if (success) {

@@ -5,10 +5,14 @@
 //  Created by apple on 14/11/30.
 //  Copyright (c) 2014年 itcast. All rights reserved.
 //
-
+#import "AlartViewController.h"
 #import "IWSettingViewController.h"
 #import "IWBaseSetting.h"
 #import "IWCommonSettingViewController.h"
+
+@interface IWSettingViewController () <ExpendableAlartViewDelegate>
+
+@end
 
 @implementation IWSettingViewController
 
@@ -73,10 +77,32 @@
     IWLabelItem *logout = [[IWLabelItem alloc] init];
     logout.text = @"退出当前账号";
     IWGroupItem *group = [[IWGroupItem alloc] init];
-    
+    logout.option = ^(IWCheakItem *item) {
+        AlartViewController *aAlartViewController = [[AlartViewController alloc] init];
+//        aAlartViewController.titleView.frame = CGRectMake(0, 0, 300, 300);
+        aAlartViewController.expendAbleAlartViewDelegate = self;
+        __weak UIViewController *weakVC = self;
+        [aAlartViewController showView:weakVC];
+        // 设置位置为屏幕中心
+        aAlartViewController.titleView.layer.position = CGPointMake(self.view.frame.size.width * 0.5, 0);
+    };
     group.items = @[logout];
     
     [self.groups addObject:group];
 }
 
+- (void)negativeButtonAction
+{
+    NSLog(@"negative Action");
+}
+
+- (void)positiveButtonAction
+{
+    NSLog(@"positive Action");
+}
+
+- (void)closeButtonAction
+{
+    NSLog(@"close Action");
+}
 @end

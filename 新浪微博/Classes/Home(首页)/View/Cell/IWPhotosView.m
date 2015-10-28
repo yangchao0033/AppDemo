@@ -19,22 +19,46 @@
 #define IWPhotoCount 9
 @implementation IWPhotosView
 
+- (void)show
+{
+    [self.subviews enumerateObjectsUsingBlock:^(IWPhotoView *obj, NSUInteger idx, BOOL *stop) {
+        obj.hidden = NO;
+        [UIView animateWithDuration:0.5 delay:0.0 options:(UIViewAnimationOptionTransitionCurlDown |UIViewAnimationOptionCurveEaseIn) animations:^{
+            obj.alpha = 1;
+        } completion:nil];
+    }];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setup];
+    }
+    return self;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
-        // 添加所有的子控件,一开始就创建9个
-        for (int i = 0; i < 9; i++) {
-            IWPhotoView *photoView = [[IWPhotoView alloc] init];
-            photoView.tag = i;
-            [photoView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)]];
-            [self addSubview:photoView];
-        }
-        
+        [self setup];
     }
     return self;
 }
 
+- (void)setup
+{
+//    self.backgroundColor = [UIColor redColor];
+    // 删除原有的子空间
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    // 添加一个通知监听当减速停止后再显示
+    // 添加所有的子控件,一开始就创建9个
+    for (int i = 0; i < 9; i++) {
+        IWPhotoView *photoView = [[IWPhotoView alloc] init];
+//        photoView.hidden = YES;
+//        photoView.backgroundColor = [UIColor blackColor];
+        photoView.tag = i;
+        [photoView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)]];
+        [self addSubview:photoView];
+    }
+}
 
 - (void)tap:(UITapGestureRecognizer *)tap
 {
@@ -94,8 +118,6 @@
         x = col * (IWPhotoWH + IWPhotoMargin);
         y = row * (IWPhotoWH + IWPhotoMargin);
         imageView.frame = CGRectMake(x, y, IWPhotoWH, IWPhotoWH);
-        
-        
         // 判断如果i>=_pic_urls.count,就隐藏imageView
         if (i >= _pic_urls.count) { // 3  0 1 2->no 4 yes
             imageView.hidden = YES;

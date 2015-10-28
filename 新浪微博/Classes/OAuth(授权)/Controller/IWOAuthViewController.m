@@ -15,6 +15,8 @@
 #import "MBProgressHUD+MJ.h"
 #import "IWAccountTool.h"
 #import "IWHttpTool.h"
+#import "IWLoadFailedViewController.h"
+#import <JDStatusBarNotification/JDStatusBarNotification.h>
 
 
 
@@ -36,24 +38,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    // 注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadStart) name:YCLoginRefresh object:nil];
     // 加载登录界面
     UIWebView *webView = (UIWebView *)self.view;
     webView.delegate = self;
+    [self loadStart];
+    
+}
+- (void)loadStart
+{
     // 创建url == 完整url = 基本url + 参数
     NSString *urlStr = [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=%@",IWAppkey,IWRedirectUrl];
     NSURL *url = [NSURL URLWithString:urlStr];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:6.0];
     
     // 加载请求
-    [webView loadRequest:request];
-    
+    [(UIWebView *)self.view loadRequest:request];
 }
-
 // 开始加载请求的时候调用
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [MBProgressHUD showMessage:@"正在加载........"];
+    [JDStatusBarNotification showWithStatus:@"正在加载..." dismissAfter:3.0 styleName:JDStatusBarStyleDark];
 }
 
 // 加载完成的时候调用
@@ -66,7 +72,13 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [MBProgressHUD hideHUD];
+    
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"IWLoadFailedViewController" bundle:nil];
+    IWLoadFailedViewController *failedVC = sb.instantiateInitialViewController;
+    [self presentViewController:failedVC animated:YES completion:nil];
 }
+
 
 // 是否允许加载这个请求,加载一个网页之前调用这个方法
 // 拦截requestToken
@@ -115,7 +127,11 @@
     }];
     
 }
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:YCAppWillEnterFore object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:YCLoginRefresh object:nil];
+}
 
 
 @end

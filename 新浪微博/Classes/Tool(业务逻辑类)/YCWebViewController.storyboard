@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vfO-Au-7me">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <scenes>
+        <!--Web View Controller-->
+        <scene sceneID="EL9-8N-xJt">
+            <objects>
+                <viewController id="vfO-Au-7me" customClass="YCWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="azC-7n-dQh"/>
+                        <viewControllerLayoutGuide type="bottom" id="rEg-OD-PBX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GhZ-xD-bgA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLn-n4-SXW" customClass="YCWebView">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vfO-Au-7me" id="zLT-JX-LXD"/>
+                                </connections>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwR-7e-Gpe">
+                                <rect key="frame" x="0.0" y="20" width="72" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Eir-eC-EBc"/>
+                                    <constraint firstAttribute="height" constant="44" id="KvM-Yw-SGl"/>
+                                    <constraint firstAttribute="width" constant="72" id="jdv-YF-QLa"/>
+                                    <constraint firstAttribute="width" constant="46" id="mfh-79-GWp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Eir-eC-EBc"/>
+                                        <exclude reference="mfh-79-GWp"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="goBack:" destination="vfO-Au-7me" eventType="touchUpInside" id="lIa-yr-4Re"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rEg-OD-PBX" firstAttribute="top" secondItem="uLn-n4-SXW" secondAttribute="bottom" id="F7C-c1-DRs"/>
+                            <constraint firstItem="xwR-7e-Gpe" firstAttribute="top" secondItem="uLn-n4-SXW" secondAttribute="top" id="FVV-AC-C9W"/>
+                            <constraint firstAttribute="trailing" secondItem="uLn-n4-SXW" secondAttribute="trailing" id="N8q-Kf-CKg"/>
+                            <constraint firstItem="uLn-n4-SXW" firstAttribute="leading" secondItem="GhZ-xD-bgA" secondAttribute="leading" id="T5K-pZ-0TO"/>
+                            <constraint firstItem="xwR-7e-Gpe" firstAttribute="trailing" secondItem="uLn-n4-SXW" secondAttribute="trailing" id="Ub9-D8-XXL"/>
+                            <constraint firstItem="uLn-n4-SXW" firstAttribute="top" secondItem="GhZ-xD-bgA" secondAttribute="top" id="Wgo-Nd-0yq"/>
+                            <constraint firstItem="xwR-7e-Gpe" firstAttribute="leading" secondItem="uLn-n4-SXW" secondAttribute="leading" id="f8c-bR-2X0"/>
+                            <constraint firstItem="uLn-n4-SXW" firstAttribute="top" secondItem="azC-7n-dQh" secondAttribute="bottom" id="kn5-K7-tJK"/>
+                            <constraint firstItem="xwR-7e-Gpe" firstAttribute="bottom" secondItem="uLn-n4-SXW" secondAttribute="bottom" id="t1T-iW-4oh"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Wgo-Nd-0yq"/>
+                                <exclude reference="Ub9-D8-XXL"/>
+                                <exclude reference="t1T-iW-4oh"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="z21-wy-9Ti"/>
+                    <connections>
+                        <outlet property="webView" destination="uLn-n4-SXW" id="lVc-HG-ld1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="APi-pi-Iub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1124" y="331"/>
+        </scene>
+    </scenes>
+</document>

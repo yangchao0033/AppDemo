@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0B962B49-A068-4928-9D90-0C9FFD0699A6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>新浪微博</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E34649E4997F1144DE1AA2EC6B46E36A0A9B3699</key>
+		<string>https://github.com/yangchao0033/SinaWeiBo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>新浪微博.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E34649E4997F1144DE1AA2EC6B46E36A0A9B3699</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/yangchao0033/SinaWeiBo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E34649E4997F1144DE1AA2EC6B46E36A0A9B3699</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E34649E4997F1144DE1AA2EC6B46E36A0A9B3699</string>
+			<key>IDESourceControlWCCName</key>
+			<string>%E6%96%B0%E6%B5%AA%E5%AE%A2%E6%88%B7%E7%AB%AF</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -67,6 +67,7 @@
     [self addSubview:statusToolBar];
 }
 
+
 - (void)setSf:(IWStatusFrame *)sf
 {
     _sf = sf;

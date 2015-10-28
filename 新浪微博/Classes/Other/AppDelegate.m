@@ -32,23 +32,19 @@
     
     // 1.创建窗口
     self.window = [[UIWindow alloc] initWithFrame:IWScreenSizes];
-
-//    self.window != [UIApplication sharedApplication].keyWindow
-    
     // 2.获取accessToken
     IWAccount *account = [IWAccountTool account];
-    if (account.access_token) { // 有
+    NSString *accessToken = account.access_token;
+    if (account.access_token) { // 已经获取成功
         // 判断有没有新特性,从而选择窗口的根控制器
     [IWMainTool chooseRootViewController:self.window];
+        NSLog(@"accessToken=%@, uid=%@, source=%@", account.access_token, account.uid, IWAppkey);
     }
-    else{ // 木有
-    
+    else{ // 还没有获取过授权
         // 进入授权
         IWOAuthViewController *oauth = [[IWOAuthViewController alloc] init];
         self.window.rootViewController = oauth;
-    
     }
-
     // 3.显示窗口并且成为主窗口
     [self.window makeKeyAndVisible];
 
@@ -116,10 +112,12 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[NSNotificationCenter defaultCenter] postNotificationName:YCAppWillEnterFore object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

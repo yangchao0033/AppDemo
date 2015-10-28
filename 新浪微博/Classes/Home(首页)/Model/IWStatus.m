@@ -22,7 +22,15 @@
     return @{@"pic_urls":[IWPhoto class]};
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    
+}
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return nil;
+}
 
 /*
  处理时间

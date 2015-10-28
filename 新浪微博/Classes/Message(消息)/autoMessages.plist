@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>a</key>
+	<string>abc</string>
+	<key>爱</key>
+	<string>我也爱您</string>
+	<key>吃</key>
+	<string>我也要吃</string>
+	<key>要</key>
+	<string>要什么</string>
+	<key>切</key>
+	<string>有, 有,  切克闹,  煎饼果子来一套</string>
+</dict>
+</plist>

@@ -41,11 +41,8 @@
         [add addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
         // 自动算出控件最合适的尺寸
         [add sizeToFit];
-        
         [self addSubview:add];
-        
         _addButton = add;
-        
     }
     return _addButton;
 }
@@ -108,22 +105,19 @@
 #pragma mark - 设置所有tabBarButton的frame
 - (void)setUpAllTabBarButtonFrame
 {
-    
-    int count = self.tabBarButtons.count + 1;
+    int count = (int)self.tabBarButtons.count + 1;
     CGFloat w = self.width / count;
     CGFloat h = self.bounds.size.height;
     CGFloat x = 0;
     CGFloat y = 0;
     int i = 0;
     for (UIView *tabBarButton in self.tabBarButtons) {
-        
             if (i == 2) {
                 i = 3;
             }
             x = i * w;
             tabBarButton.frame = CGRectMake(x, y, w, h);
             i++;
-            
     }
 }
 

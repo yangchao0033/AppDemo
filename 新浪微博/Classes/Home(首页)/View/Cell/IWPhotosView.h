@@ -12,5 +12,5 @@
 
 // 配图数组(IWPhoto)
 @property (nonatomic, strong) NSArray *pic_urls;
-
+- (void)show;
 @end

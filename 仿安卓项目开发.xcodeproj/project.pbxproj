@@ -434,10 +434,10 @@
 		18DF6B411A231BCE000CF798 /* IWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWUser.m; sourceTree = "<group>"; };
 		18DF6B431A231BE1000CF798 /* IWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPhoto.h; sourceTree = "<group>"; };
 		18DF6B441A231BE1000CF798 /* IWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWPhoto.m; sourceTree = "<group>"; };
-		18EA2D371A1D96FD0024E748 /* 新浪微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "新浪微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18EA2D371A1D96FD0024E748 /* 仿安卓项目开发.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "仿安卓项目开发.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EA2D3B1A1D96FD0024E748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18EA2D471A1D96FE0024E748 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18EA2D501A1D96FE0024E748 /* 新浪微博Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "新浪微博Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18EA2D501A1D96FE0024E748 /* 仿安卓项目开发.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "仿安卓项目开发.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EA2D551A1D96FE0024E748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18EA2D561A1D96FE0024E748 /* ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____Tests.m"; sourceTree = "<group>"; };
 		18EA2D681A1DC0A30024E748 /* IWTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBarController.h; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 		18EA2D6D1A1DC0A30024E748 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18EA2D6E1A1DC0A30024E748 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		18EA2D6F1A1DC0A30024E748 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		18EA2D701A1DC0A30024E748 /* 新浪微博.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "新浪微博.pch"; sourceTree = "<group>"; };
+		18EA2D701A1DC0A30024E748 /* 仿安卓项目开发.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "仿安卓项目开发.pch"; sourceTree = "<group>"; };
 		18EA2D841A1DC1CF0024E748 /* IWDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWDiscoverViewController.h; sourceTree = "<group>"; };
 		18EA2D851A1DC1CF0024E748 /* IWDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWDiscoverViewController.m; sourceTree = "<group>"; };
 		18EA2D871A1DC1DB0024E748 /* IWHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWHomeViewController.h; sourceTree = "<group>"; };
@@ -1152,8 +1152,8 @@
 			children = (
 				18BA1DF41A304FF20006EA6A /* libsqlite3.0.dylib */,
 				188847301A1ECABC00F553E6 /* 笔记.h */,
-				18EA2D391A1D96FD0024E748 /* 新浪微博 */,
-				18EA2D531A1D96FE0024E748 /* 新浪微博Tests */,
+				18EA2D391A1D96FD0024E748 /* 仿安卓项目开发 */,
+				18EA2D531A1D96FE0024E748 /* 仿安卓项目开发 */,
 				18EA2D381A1D96FD0024E748 /* Products */,
 				54CB245A77FCC04AEFCCF015 /* Pods */,
 				EBF6C4D3E2BB9220F686E854 /* Frameworks */,
@@ -1163,19 +1163,20 @@
 		18EA2D381A1D96FD0024E748 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18EA2D371A1D96FD0024E748 /* 新浪微博.app */,
-				18EA2D501A1D96FE0024E748 /* 新浪微博Tests.xctest */,
+				18EA2D371A1D96FD0024E748 /* 仿安卓项目开发.app */,
+				18EA2D501A1D96FE0024E748 /* 仿安卓项目开发.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		18EA2D391A1D96FD0024E748 /* 新浪微博 */ = {
+		18EA2D391A1D96FD0024E748 /* 仿安卓项目开发 */ = {
 			isa = PBXGroup;
 			children = (
 				18EA2D651A1DC0A30024E748 /* Classes */,
 				18EA2D471A1D96FE0024E748 /* Images.xcassets */,
 				18EA2D3A1A1D96FD0024E748 /* Supporting Files */,
 			);
+			name = "仿安卓项目开发";
 			path = "新浪微博";
 			sourceTree = "<group>";
 		};
@@ -1193,12 +1194,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		18EA2D531A1D96FE0024E748 /* 新浪微博Tests */ = {
+		18EA2D531A1D96FE0024E748 /* 仿安卓项目开发 */ = {
 			isa = PBXGroup;
 			children = (
 				18EA2D561A1D96FE0024E748 /* ____Tests.m */,
 				18EA2D541A1D96FE0024E748 /* Supporting Files */,
 			);
+			name = "仿安卓项目开发";
 			path = "新浪微博Tests";
 			sourceTree = "<group>";
 		};
@@ -1282,7 +1284,7 @@
 				18EA2D6D1A1DC0A30024E748 /* AppDelegate.h */,
 				18EA2D6E1A1DC0A30024E748 /* AppDelegate.m */,
 				18EA2D6F1A1DC0A30024E748 /* main.m */,
-				18EA2D701A1DC0A30024E748 /* 新浪微博.pch */,
+				18EA2D701A1DC0A30024E748 /* 仿安卓项目开发.pch */,
 				185CD1A21A25ABA3005C5188 /* Weibocfg.h */,
 			);
 			path = Other;
@@ -1688,9 +1690,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		18EA2D361A1D96FD0024E748 /* 新浪微博 */ = {
+		18EA2D361A1D96FD0024E748 /* 仿安卓项目开发 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18EA2D5A1A1D96FE0024E748 /* Build configuration list for PBXNativeTarget "新浪微博" */;
+			buildConfigurationList = 18EA2D5A1A1D96FE0024E748 /* Build configuration list for PBXNativeTarget "仿安卓项目开发" */;
 			buildPhases = (
 				3801FE0C76E74465C7437C70 /* Check Pods Manifest.lock */,
 				18EA2D331A1D96FD0024E748 /* Sources */,
@@ -1702,14 +1704,14 @@
 			);
 			dependencies = (
 			);
-			name = "新浪微博";
+			name = "仿安卓项目开发";
 			productName = "新浪微博";
-			productReference = 18EA2D371A1D96FD0024E748 /* 新浪微博.app */;
+			productReference = 18EA2D371A1D96FD0024E748 /* 仿安卓项目开发.app */;
 			productType = "com.apple.product-type.application";
 		};
-		18EA2D4F1A1D96FE0024E748 /* 新浪微博Tests */ = {
+		18EA2D4F1A1D96FE0024E748 /* 仿安卓项目开发Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18EA2D5D1A1D96FE0024E748 /* Build configuration list for PBXNativeTarget "新浪微博Tests" */;
+			buildConfigurationList = 18EA2D5D1A1D96FE0024E748 /* Build configuration list for PBXNativeTarget "仿安卓项目开发Tests" */;
 			buildPhases = (
 				18EA2D4C1A1D96FE0024E748 /* Sources */,
 				18EA2D4D1A1D96FE0024E748 /* Frameworks */,
@@ -1720,9 +1722,9 @@
 			dependencies = (
 				18EA2D521A1D96FE0024E748 /* PBXTargetDependency */,
 			);
-			name = "新浪微博Tests";
+			name = "仿安卓项目开发Tests";
 			productName = "新浪微博Tests";
-			productReference = 18EA2D501A1D96FE0024E748 /* 新浪微博Tests.xctest */;
+			productReference = 18EA2D501A1D96FE0024E748 /* 仿安卓项目开发.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1744,7 +1746,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 18EA2D321A1D96FD0024E748 /* Build configuration list for PBXProject "新浪微博" */;
+			buildConfigurationList = 18EA2D321A1D96FD0024E748 /* Build configuration list for PBXProject "仿安卓项目开发" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1757,8 +1759,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18EA2D361A1D96FD0024E748 /* 新浪微博 */,
-				18EA2D4F1A1D96FE0024E748 /* 新浪微博Tests */,
+				18EA2D361A1D96FD0024E748 /* 仿安卓项目开发 */,
+				18EA2D4F1A1D96FE0024E748 /* 仿安卓项目开发Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -2016,7 +2018,7 @@
 /* Begin PBXTargetDependency section */
 		18EA2D521A1D96FE0024E748 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 18EA2D361A1D96FD0024E748 /* 新浪微博 */;
+			target = 18EA2D361A1D96FD0024E748 /* 仿安卓项目开发 */;
 			targetProxy = 18EA2D511A1D96FE0024E748 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2106,11 +2108,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Feng Hou (2LY4D54LT8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "新浪微博/Classes/Other/新浪微博.pch";
+				GCC_PREFIX_HEADER = "新浪微博/Classes/Other/仿安卓项目开发.pch";
 				INFOPLIST_FILE = "新浪微博/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "仿安卓项目开发";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -2123,11 +2125,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Feng Hou (2LY4D54LT8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "新浪微博/Classes/Other/新浪微博.pch";
+				GCC_PREFIX_HEADER = "新浪微博/Classes/Other/仿安卓项目开发.pch";
 				INFOPLIST_FILE = "新浪微博/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "仿安卓项目开发";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -2146,8 +2148,8 @@
 				);
 				INFOPLIST_FILE = "新浪微博Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/新浪微博.app/新浪微博";
+				PRODUCT_NAME = "仿安卓项目开发";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/仿安卓项目开发.app/仿安卓项目开发";
 			};
 			name = Debug;
 		};
@@ -2161,15 +2163,15 @@
 				);
 				INFOPLIST_FILE = "新浪微博Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/新浪微博.app/新浪微博";
+				PRODUCT_NAME = "仿安卓项目开发";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/仿安卓项目开发.app/仿安卓项目开发";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		18EA2D321A1D96FD0024E748 /* Build configuration list for PBXProject "新浪微博" */ = {
+		18EA2D321A1D96FD0024E748 /* Build configuration list for PBXProject "仿安卓项目开发" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18EA2D581A1D96FE0024E748 /* Debug */,
@@ -2178,7 +2180,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18EA2D5A1A1D96FE0024E748 /* Build configuration list for PBXNativeTarget "新浪微博" */ = {
+		18EA2D5A1A1D96FE0024E748 /* Build configuration list for PBXNativeTarget "仿安卓项目开发" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18EA2D5B1A1D96FE0024E748 /* Debug */,
@@ -2187,7 +2189,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18EA2D5D1A1D96FE0024E748 /* Build configuration list for PBXNativeTarget "新浪微博Tests" */ = {
+		18EA2D5D1A1D96FE0024E748 /* Build configuration list for PBXNativeTarget "仿安卓项目开发Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18EA2D5E1A1D96FE0024E748 /* Debug */,

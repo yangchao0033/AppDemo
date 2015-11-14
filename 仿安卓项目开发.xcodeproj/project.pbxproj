@@ -1176,8 +1176,7 @@
 				18EA2D471A1D96FE0024E748 /* Images.xcassets */,
 				18EA2D3A1A1D96FD0024E748 /* Supporting Files */,
 			);
-			name = "仿安卓项目开发";
-			path = "新浪微博";
+			path = "仿安卓项目开发";
 			sourceTree = "<group>";
 		};
 		18EA2D3A1A1D96FD0024E748 /* Supporting Files */ = {
@@ -1201,7 +1200,7 @@
 				18EA2D541A1D96FE0024E748 /* Supporting Files */,
 			);
 			name = "仿安卓项目开发";
-			path = "新浪微博Tests";
+			path = "仿安卓项目开发Tests";
 			sourceTree = "<group>";
 		};
 		18EA2D541A1D96FE0024E748 /* Supporting Files */ = {
@@ -2108,8 +2107,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Feng Hou (2LY4D54LT8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "新浪微博/Classes/Other/仿安卓项目开发.pch";
-				INFOPLIST_FILE = "新浪微博/Info.plist";
+				GCC_PREFIX_HEADER = "仿安卓项目开发/Classes/Other/仿安卓项目开发.pch";
+				INFOPLIST_FILE = "仿安卓项目开发/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "仿安卓项目开发";
@@ -2125,8 +2124,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Feng Hou (2LY4D54LT8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "新浪微博/Classes/Other/仿安卓项目开发.pch";
-				INFOPLIST_FILE = "新浪微博/Info.plist";
+				GCC_PREFIX_HEADER = "仿安卓项目开发/Classes/Other/仿安卓项目开发.pch";
+				INFOPLIST_FILE = "仿安卓项目开发/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "仿安卓项目开发";
@@ -2146,7 +2145,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "新浪微博Tests/Info.plist";
+				INFOPLIST_FILE = "仿安卓项目开发Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "仿安卓项目开发";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/仿安卓项目开发.app/仿安卓项目开发";
@@ -2161,7 +2160,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "新浪微博Tests/Info.plist";
+				INFOPLIST_FILE = "仿安卓项目开发Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "仿安卓项目开发";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/仿安卓项目开发.app/仿安卓项目开发";
